@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Décoration Gâteaux — Imen & Inès Arbi</title>
+<link rel="icon" type="image/svg+xml" href="https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/302120820_534598368465125_6902567438983465390_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=qywsQZg8XpEQ7kNvwEeQHuj&_nc_oc=Adp6-zq-m_xFqIsfoowIrrsEYpw9ATT1Ifm_Xp5E21_n8xPBvzi2xHNV0VHe0KN_Rxk&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=RUYHetXuXubyQPsG49wQrA&_nc_ss=8&oh=00_AfwSiomQtTFmWoScpndXKf8aQtHz0sbQQrpLSllW1YtiOA&oe=69C14B41">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -870,22 +871,29 @@ function goPage(id, el) {
   if (el) el.classList.add('active');
   window.scrollTo(0, 0);
   if (id === 'sweets') renderGrid(sweetsData, 'sweets-grid');
-  if (id === 'cakes') renderGrid(cakesData, 'cakes-grid');
-  if (id === 'salt') renderGrid(saltData, 'salt-grid');
-  if (id === 'order') { var list = document.getElementById('items-list'); if (list && list.children.length === 0) addItem(); }
+  if (id === 'cakes')  renderGrid(cakesData,  'cakes-grid');
+  if (id === 'salt')   renderGrid(saltData,    'salt-grid');
+  if (id === 'order')  { var list = document.getElementById('items-list'); if (list && list.children.length === 0) addItem(); }
+
+  // Push real browser history entry
+  history.pushState({ page: id }, '', '#' + id);
 }
 
-function goPageCat(page, cat) {
-  goPage(page, null);
-  setTimeout(() => {
-    const pills = document.querySelectorAll('#sweet-pills .pill');
-    pills.forEach(p => {
-      p.classList.remove('active');
-      if (p.getAttribute('onclick') && p.getAttribute('onclick').includes("'" + cat + "'")) p.classList.add('active');
-    });
-    renderGrid(sweetsData.filter(p => p.cat === cat), 'sweets-grid');
-  }, 50);
-}
+// Handle browser back/forward buttons
+window.addEventListener('popstate', function(e) {
+  const id = (e.state && e.state.page) ? e.state.page : 'home';
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  window.scrollTo(0, 0);
+  if (id === 'sweets') renderGrid(sweetsData, 'sweets-grid');
+  if (id === 'cakes')  renderGrid(cakesData,  'cakes-grid');
+  if (id === 'salt')   renderGrid(saltData,    'salt-grid');
+  if (id === 'order')  { var list = document.getElementById('items-list'); if (list && list.children.length === 0) addItem(); }
+});
+
+// Set initial history state on load
+history.replaceState({ page: 'home' }, '', '#home');
 
 const allProducts = [
   'بقلاوة لوز','بقلاوة بوفريوة','بقلاوة فاكية',
