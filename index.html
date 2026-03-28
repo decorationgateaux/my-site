@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Décoration Gâteaux — Imen & Inès Arbi</title>
-<link rel="icon" type="image/svg+xml" href="https://scontent-dus1-1.xx.fbcdn.net/v/t39.30808-6/302120820_534598368465125_6902567438983465390_n.jpg?_nc_cat=104&ccb=1-7&_nc_sid=1d70fc&_nc_ohc=qywsQZg8XpEQ7kNvwEeQHuj&_nc_oc=Adp6-zq-m_xFqIsfoowIrrsEYpw9ATT1Ifm_Xp5E21_n8xPBvzi2xHNV0VHe0KN_Rxk&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=RUYHetXuXubyQPsG49wQrA&_nc_ss=8&oh=00_AfwSiomQtTFmWoScpndXKf8aQtHz0sbQQrpLSllW1YtiOA&oe=69C14B41">
+<link rel="icon" type="images/jpg"   href="https://scontent-dus1-1.xx.fbcdn.net/v/t1.6435-9/123810540_4048725181808344_325510173305968781_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=53a332&_nc_ohc=ifnn43614mIQ7kNvwHR-JZi&_nc_oc=AdoE0YAbYEcIYMg1RttLRTu9q2sKqzeR4WuJXyBJGvkW3jpSZ-ltCfwTkxuRNFWYVAc&_nc_zt=23&_nc_ht=scontent-dus1-1.xx&_nc_gid=R6uOyozxDPSNHq-4FOTjyQ&_nc_ss=8&oh=00_AfyTGpvKCTdEoww4vpaqsDWcXUSBGCFYNXWPhCBYsOmtyA&oe=69E2EA99">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
 :root{
@@ -352,7 +352,7 @@
 body{font-family:var(--fb);background:var(--cream);color:var(--choco);min-height:100vh;}
 nav{background:var(--white);border-bottom:1.5px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:62px;position:sticky;top:0;z-index:200;}
 .logo{font-family:var(--ff);font-size:20px;color:var(--gold-dark);letter-spacing:.03em;line-height:1.2;}
-.logo span{display:block;font-size:11px;color:var(--muted);font-family:var(--fb);letter-spacing:.1em;}
+.logo span{display:block;font-size:11px;color:var(--gold);font-family:var(--fb);letter-spacing:.1em;}
 .nav-links{display:flex;gap:0;list-style:none;}
 .nav-links li a{padding:8px 14px;font-size:13px;color:var(--muted);text-decoration:none;border-radius:8px;display:block;transition:all .2s;}
 .nav-links li a:hover,.nav-links li a.active{background:var(--gold-light);color:var(--gold-dark);}
@@ -443,16 +443,133 @@ footer{background:var(--choco);padding:2.5rem;text-align:center;margin-top:4rem;
 .foot-tels{font-size:14px;color:var(--gold);}
 .toast{background:var(--choco);color:var(--white);padding:10px 18px;border-radius:10px;font-size:13px;position:fixed;bottom:1.5rem;right:1.5rem;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999;}
 .toast.show{opacity:1;transform:translateY(0);}
+/* ─── MOBILE BOTTOM NAV ─── */
+.mobile-nav {
+  display: none;
+  position: fixed;
+  bottom: 0; left: 0; right: 0;
+  background: var(--white);
+  border-top: 1.5px solid var(--border);
+  z-index: 300;
+  padding: 0 0 env(safe-area-inset-bottom, 0);
+  box-shadow: 0 -4px 20px rgba(46,26,14,.07);
+}
+.mobile-nav-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: stretch;
+}
+.mnav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  padding: 10px 4px 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: .03em;
+  transition: color .2s;
+  -webkit-tap-highlight-color: transparent;
+  position: relative;
+}
+.mnav-btn svg { transition: transform .15s; }
+.mnav-btn.active { color: var(--gold-dark); }
+.mnav-btn.active svg { transform: scale(1.12); }
+.mnav-btn.active::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 20%; right: 20%;
+  height: 2.5px;
+  background: var(--gold);
+  border-radius: 0 0 3px 3px;
+}
+.mnav-order {
+  background: var(--gold);
+  color: var(--white) !important;
+  border-radius: 14px;
+  margin: 6px 8px;
+  padding: 6px 4px !important;
+  flex: 1.2;
+  box-shadow: 0 2px 10px rgba(196,154,60,.35);
+}
+.mnav-order.active { color: var(--white) !important; }
+.mnav-order.active::after { display: none; }
+
 @media(max-width:680px){
-  nav{padding:0 1rem;}
-  .nav-links{display:none;}
-  .hero{padding:2.5rem 1rem 2rem;}
-  .hero-title{font-size:32px;}
-  .hero-owners{gap:1rem;padding:.75rem 1.25rem;}
-  .banner{margin:0 1rem;padding:1.5rem;}
-  .section{padding:2rem 1rem;}
-  .form-row{grid-template-columns:1fr;}
-  .order-form{padding:2rem 1rem;}
+  nav { padding: 0 1rem; }
+  .nav-links { display: none; }
+  .nav-contact { display: none; }
+  .mobile-nav { display: block; }
+
+  /* Add bottom padding so content isn't hidden behind mobile nav */
+  body { padding-bottom: 72px; }
+
+  /* Hero */
+  .hero { padding: 2.2rem 1.1rem 1.8rem; }
+  .hero-tag { font-size: 10px; }
+  .hero-title { font-size: 30px; }
+  .hero-sub { font-size: 13.5px; }
+  .hero-owners { gap: .75rem; padding: .75rem 1.25rem; }
+
+  /* Hero buttons — stack nicely */
+  .hero-btns { flex-direction: column; align-items: stretch; gap: .5rem; padding: 0 .5rem; }
+  .hero-btns .btn { width: 100%; font-size: 14px; padding: 13px 20px; border-radius: 12px; }
+
+  /* Category tiles — 2 per row */
+  .home-cats { padding: 0 1rem; margin: 2rem auto; }
+  .cat-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .cat-tile { padding: 1.1rem .75rem; border-radius: 12px; }
+  .ct-icon { width: 44px; height: 44px; }
+  .ct-name { font-size: 13px; }
+
+  /* Banner */
+  .banner { margin: 0 1rem; padding: 1.5rem 1.25rem; border-radius: 14px; }
+  .banner-txt h3 { font-size: 18px; }
+  .banner-txt p { font-size: 12px; }
+
+  /* Sections */
+  .section { padding: 1.75rem 1rem; }
+  .section-title { font-size: 22px; }
+
+  /* Product grid — 2 columns on mobile */
+  .prod-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; }
+  .prod-card { border-radius: 12px; }
+  .prod-img { height: 120px; }
+  .prod-body { padding: .75rem .8rem .9rem; }
+  .prod-name { font-size: 13px; }
+  .prod-desc { font-size: 11px; }
+  .prod-price { font-size: 14px; }
+  .add-btn { width: 28px; height: 28px; font-size: 17px; }
+
+  /* Pills — scrollable row */
+  .pills { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 6px; -webkit-overflow-scrolling: touch; scrollbar-width: none; }
+  .pills::-webkit-scrollbar { display: none; }
+  .pill { white-space: nowrap; flex-shrink: 0; }
+
+  /* Form rows */
+  .form-row { grid-template-columns: 1fr; }
+  .order-form { padding: 2rem 1rem; }
+
+  /* Order page */
+  .order-section { grid-template-columns: 1fr; gap: .75rem; }
+  .order-fields  { grid-template-columns: 1fr; }
+  .order-field--full { grid-column: 1; }
+  .order-hero   { padding: 2.5rem 1.25rem 2.25rem; }
+  .order-wrap   { padding: 1.75rem 1rem 4rem; }
+  .item-row     { grid-template-columns: 1fr 90px 36px; }
+
+  /* Toast above mobile nav */
+  .toast { bottom: 84px; right: 1rem; left: 1rem; text-align: center; }
+
+  /* Footer */
+  footer { margin-bottom: 0; padding: 2rem 1rem; }
 }
 .foot-socials {
   display: flex;
@@ -762,6 +879,32 @@ footer{background:var(--choco);padding:2.5rem;text-align:center;margin-top:4rem;
 
 <div class="toast" id="toast"></div>
 
+<!-- MOBILE BOTTOM NAV -->
+<nav class="mobile-nav" id="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="mnav-btn active" id="mnav-home" onclick="goPage('home',null);setMnav('home')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+      Accueil
+    </button>
+    <button class="mnav-btn" id="mnav-sweets" onclick="goPage('sweets',null);setMnav('sweets')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4"/><circle cx="12" cy="15" r="1.5" fill="currentColor" stroke="none"/></svg>
+      Sucreries
+    </button>
+    <button class="mnav-btn mnav-order" id="mnav-order" onclick="goPage('order',null);setMnav('order')">
+      <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+      Commander
+    </button>
+    <button class="mnav-btn" id="mnav-cakes" onclick="goPage('cakes',null);setMnav('cakes')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><path d="M8 11V9"/><path d="M16 11V9"/><path d="M7 7c0-1.1.9-2 2-2s2 .9 2 2"/><path d="M13 7c0-1.1.9-2 2-2s2 .9 2 2"/></svg>
+      Gâteaux
+    </button>
+    <button class="mnav-btn" id="mnav-salt" onclick="goPage('salt',null);setMnav('salt')">
+      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+      Salé
+    </button>
+  </div>
+</nav>
+
 <script>
 const IMG = {
   baklawa_almond:  'https://jpeuxpasjaicuisinedotfr.wordpress.com/wp-content/uploads/2013/06/7a929-imgp4840d.jpg',
@@ -826,9 +969,9 @@ const cakesData = [
 
 const saltData = [
 
-  {name:' Crevettes',desc:'Crevettes marinées, sauce cocktail',price:'30.000',img:IMG.shrimp,cat:'crevet'},
-  {name:'Mini Sandwichs ',desc:'Pain de mie, garnitures variées',price:'20.000',img:IMG.sandwich,cat:'poulet'},
-  {name:'Plateau Mixte 30 pcs',desc:'Assortiment feuilletés et bouchées salées',price:'45.000',img:IMG.plateau_30,cat:'thon'},
+  {name:' Crevettes',desc:'Crevettes marinées, sauce cocktail',price:'65',img:IMG.shrimp,cat:'crevet'},
+  {name:'Mini Sandwichs ',desc:'Pain de mie, garnitures variées',price:'45',img:IMG.sandwich,cat:'poulet'},
+  {name:'Plateau Mixte 30 pcs',desc:'Assortiment feuilletés et bouchées salées',price:'45',img:IMG.plateau_42,cat:'thon'},
   
 ];
 function renderGrid(data, gridId) {
@@ -869,6 +1012,7 @@ function goPage(id, el) {
   document.getElementById('page-' + id).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
   if (el) el.classList.add('active');
+  setMnav(id);
   window.scrollTo(0, 0);
   if (id === 'sweets') renderGrid(sweetsData, 'sweets-grid');
   if (id === 'cakes')  renderGrid(cakesData,  'cakes-grid');
@@ -885,6 +1029,7 @@ window.addEventListener('popstate', function(e) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.getElementById('page-' + id).classList.add('active');
   document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  setMnav(id);
   window.scrollTo(0, 0);
   if (id === 'sweets') renderGrid(sweetsData, 'sweets-grid');
   if (id === 'cakes')  renderGrid(cakesData,  'cakes-grid');
@@ -1033,6 +1178,23 @@ function showToast(msg) {
   t.textContent = msg;
   t.classList.add('show');
   setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+function setMnav(id) {
+  document.querySelectorAll('.mnav-btn').forEach(b => b.classList.remove('active'));
+  const btn = document.getElementById('mnav-' + id);
+  if (btn) btn.classList.add('active');
+}
+
+function goPageCat(page, cat) {
+  goPage(page, null);
+  setMnav(page);
+  setTimeout(() => {
+    if (page === 'sweets') {
+      const pill = [...document.querySelectorAll('#sweet-pills .pill')].find(p => p.getAttribute('onclick') && p.getAttribute('onclick').includes("'" + cat + "'"));
+      if (pill) filterSweets(pill, cat);
+    }
+  }, 80);
 }
 
 renderGrid(sweetsData, 'sweets-grid');
