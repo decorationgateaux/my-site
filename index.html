@@ -445,19 +445,53 @@ footer{background:var(--choco);padding:2.5rem;text-align:center;margin-top:4rem;
 .toast.show{opacity:1;transform:translateY(0);}
 /* ─── MOBILE BOTTOM NAV ─── */
 .mobile-nav {
-  display: none;
+  display: flex; /* Changed from none to show it */
   position: fixed;
   bottom: 0; left: 0; right: 0;
   background: var(--white);
   border-top: 1.5px solid var(--border);
   z-index: 300;
-  padding: 0 0 env(safe-area-inset-bottom, 0);
+  /* Ensures padding for modern notched phones */
+  padding-bottom: env(safe-area-inset-bottom, 0); 
   box-shadow: 0 -4px 20px rgba(46,26,14,.07);
 }
+
 .mobile-nav-inner {
   display: flex;
+  width: 100%;
   justify-content: space-around;
-  align-items: stretch;
+  align-items: center; /* Centers items vertically */
+}
+
+/* Individual Button Styling */
+.mnav-btn {
+  flex: 1;               /* Forces all buttons to have equal width */
+  display: flex;
+  flex-direction: column; /* Icon on top, Text on bottom */
+  align-items: center;    /* Horizontal centering */
+  justify-content: center;
+  padding: 8px 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  /* THE 3PX SPACE YOU REQUESTED */
+  gap: 3px; 
+  
+  color: var(--text-muted); /* Use your variable or #777 */
+  transition: all 0.2s ease;
+}
+
+/* Ensure the text is consistent */
+.mnav-btn span {
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+}
+
+/* Removes invisible spacing under the SVG */
+.mnav-btn svg {
+  display: block;
 }
 .mnav-btn {
   flex: 1;
@@ -636,10 +670,10 @@ footer{background:var(--choco);padding:2.5rem;text-align:center;margin-top:4rem;
       <div class="owner">
          <div class="owner-name">Imen & Ines Arbi</m>
         <p1></p1></div>
-        <div class="owner-tel">50 906 797</div>
+        <div class="owner-name">50 906 797</div>
     
         <div class="owner-name"></div>
-        <div class="owner-tel">53 480 838</div>
+        <div class="owner-name">53 480 838</div>
        
       </div>
     </div>
@@ -882,26 +916,36 @@ footer{background:var(--choco);padding:2.5rem;text-align:center;margin-top:4rem;
 <!-- MOBILE BOTTOM NAV -->
 <nav class="mobile-nav" id="mobile-nav">
   <div class="mobile-nav-inner">
-    <button class="mnav-btn active" id="mnav-home" onclick="goPage('home',null);setMnav('home')">
-      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
-      Accueil
-    </button>
-    <button class="mnav-btn" id="mnav-sweets" onclick="goPage('sweets',null);setMnav('sweets')">
-      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4"/><circle cx="12" cy="15" r="1.5" fill="currentColor" stroke="none"/></svg>
-      Sucreries
-    </button>
-    <button class="mnav-btn mnav-order" id="mnav-order" onclick="goPage('order',null);setMnav('order')">
+<nav class="mnav-bar">
+  <button class="mnav-btn active" id="mnav-home" onclick="goPage('home',null);setMnav('home')">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+    <span>Accueil</span>
+  </button>
+
+  <button class="mnav-btn" id="mnav-sweets" onclick="goPage('sweets',null);setMnav('sweets')">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/><path d="M8 12c0-2.21 1.79-4 4-4s4 1.79 4 4"/><circle cx="12" cy="15" r="1.5" fill="currentColor" stroke="none"/></svg>
+    <span>Sucreries</span>
+  </button>
+
+  <button class="mnav-btn mnav-order" id="mnav-order" onclick="goPage('order',null);setMnav('order')">
+    <div class="order-icon-bg">
       <svg width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-      Commander
-    </button>
-    <button class="mnav-btn" id="mnav-cakes" onclick="goPage('cakes',null);setMnav('cakes')">
-      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><path d="M8 11V9"/><path d="M16 11V9"/><path d="M7 7c0-1.1.9-2 2-2s2 .9 2 2"/><path d="M13 7c0-1.1.9-2 2-2s2 .9 2 2"/></svg>
-      Gâteaux
-    </button>
-    <button class="mnav-btn" id="mnav-salt" onclick="goPage('salt',null);setMnav('salt')">
-      <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
-      Salé
-    </button>
+    </div>
+    <span>Commander</span>
+  </button>
+
+  <button class="mnav-btn" id="mnav-cakes" onclick="goPage('cakes',null);setMnav('cakes')">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="10" rx="2"/><path d="M12 11V7"/><path d="M8 11V9"/><path d="M16 11V9"/><path d="M7 7c0-1.1.9-2 2-2s2 .9 2 2"/><path d="M13 7c0-1.1.9-2 2-2s2 .9 2 2"/></svg>
+    <span>Gâteaux</span>
+  </button>
+
+  <button class="mnav-btn" id="mnav-salt" onclick="goPage('salt',null);setMnav('salt')">
+    <svg width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24">
+      <path d="M4.5 10.5h15C19.5 7.5 17 5 12 5C7 5 4.5 7.5 4.5 10.5z"/><rect x="3.5" y="11.5" width="17" height="1.5" rx="0.5"/><path d="M4 14.5l1-0.5l1 0.5l1-0.5l1 0.5l1-0.5l1 0.5l1-0.5l1 0.5l1-0.5l1 0.5l1-0.5l1 0.5l1-0.5l1 0.5l1-0.5l1 0.5"/><rect x="4.5" y="16.5" width="15" height="1" rx="0.5"/><path d="M5.5 18.5h13C18.5 20.5 17 22 12 22C7 22 5.5 20.5 5.5 18.5z"/><circle cx="8" cy="7.5" r="0.4"/><circle cx="10" cy="7" r="0.4"/><circle cx="12" cy="7.5" r="0.4"/><circle cx="14" cy="7" r="0.4"/><circle cx="16" cy="7.5" r="0.4"/>
+    </svg>
+    <span>Salé</span>
+  </button>
+</nav>
   </div>
 </nav>
 
