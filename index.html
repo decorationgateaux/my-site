@@ -753,60 +753,197 @@
       .social-float { bottom: 18px; right: 16px; gap: 10px; }
       .social-float-btn { width: 46px; height: 46px; }
       .social-float-btn svg { width: 22px !important; }
+
+      /* ── Navbar mobile ── */
+      .site-nav { padding: 12px 18px; }
+      .nav-logo-text { font-size: 1.1rem; }
+      .lang-switcher { gap: 4px; }
+      .lang-btn { font-size: .55rem; padding: 4px 8px; }
     }
+  </style>
+
+  <style>
+    /* ══════════════════════════════════════
+       NAVBAR / LOGO
+    ══════════════════════════════════════ */
+    .site-nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 40px;
+      background: linear-gradient(180deg, rgba(26,10,5,.95) 0%, rgba(26,10,5,.7) 100%);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(201,146,42,.18);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      width: 48px;
+      height: 48px;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-text {
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: 1.25rem;
+      font-weight: 700;
+      background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 50%, var(--gold-light) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      letter-spacing: .08em;
+      line-height: 1.1;
+    }
+
+    .nav-logo-text small {
+      display: block;
+      font-size: .5rem;
+      letter-spacing: .35em;
+      color: var(--gold-pale);
+      -webkit-text-fill-color: var(--gold-pale);
+      opacity: .7;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 400;
+      margin-top: 2px;
+    }
+
+    /* ── LANGUAGE SWITCHER ── */
+    .lang-switcher {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+
+    .lang-btn {
+      background: transparent;
+      border: 1px solid rgba(201,146,42,.35);
+      color: var(--gold-pale);
+      font-family: 'Cinzel Decorative', cursive;
+      font-size: .6rem;
+      letter-spacing: .15em;
+      padding: 5px 12px;
+      cursor: pointer;
+      transition: all .2s;
+      text-transform: uppercase;
+      opacity: .6;
+    }
+    .lang-btn:hover { opacity: 1; border-color: var(--gold); background: rgba(201,146,42,.1); }
+    .lang-btn.active {
+      opacity: 1;
+      background: rgba(201,146,42,.18);
+      border-color: var(--gold);
+      color: var(--gold-light);
+    }
+
+    /* push hero content below navbar */
+    #hero { padding-top: 80px; }
   </style>
 </head>
 <body>
 
+<!-- ═══ NAVBAR ═══ -->
+<nav class="site-nav">
+  <a href="#hero" class="nav-logo">
+    <svg class="nav-logo-icon" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="crown-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#F5DFA0"/>
+          <stop offset="40%" style="stop-color:#C9922A"/>
+          <stop offset="100%" style="stop-color:#E8BC6A"/>
+        </linearGradient>
+        <linearGradient id="gem-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" style="stop-color:#e05a7a"/>
+          <stop offset="100%" style="stop-color:#8B1A2B"/>
+        </linearGradient>
+      </defs>
+      <rect x="12" y="50" width="56" height="10" rx="3" fill="url(#crown-grad)"/>
+      <path d="M12 50 L12 30 L24 42 L40 18 L56 42 L68 30 L68 50 Z" fill="url(#crown-grad)"/>
+      <path d="M12 50 L12 30 L24 42 L40 18 L56 42 L68 30 L68 50" fill="none" stroke="#F5DFA0" stroke-width="1" opacity=".5"/>
+      <circle cx="40" cy="38" r="5" fill="url(#gem-grad)"/>
+      <circle cx="40" cy="38" r="2.5" fill="#F5DFA0" opacity=".6"/>
+      <circle cx="22" cy="46" r="3" fill="url(#gem-grad)"/>
+      <circle cx="58" cy="46" r="3" fill="url(#gem-grad)"/>
+      <circle cx="40" cy="16" r="2.5" fill="#E8BC6A"/>
+      <circle cx="12" cy="28" r="2" fill="#E8BC6A"/>
+      <circle cx="68" cy="28" r="2" fill="#E8BC6A"/>
+      <line x1="16" y1="63" x2="64" y2="63" stroke="#E8BC6A" stroke-width=".8" opacity=".5"/>
+    </svg>
+    <div class="nav-logo-text">
+      King Delight
+      <small>Turkish Confections · Istanbul</small>
+    </div>
+  </a>
+
+  <div class="lang-switcher">
+    <button class="lang-btn active" onclick="setLang('en')">EN</button>
+    <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('es')">ES</button>
+    <button class="lang-btn" onclick="setLang('ru')">RU</button>
+  </div>
+</nav>
+
 <!-- ═══ HERO ═══ -->
 <section id="hero">
-  <div class="hero-badge">Istanbul · Est. Sultanahmet</div>
+  <div class="hero-badge" data-i18n="hero_badge">Istanbul · Est. Sultanahmet</div>
   <div class="ornament-line"><span>✦</span></div>
   <h1>King<br>Delight</h1>
-  <p class="hero-sub">The Finest Turkish Confections</p>
-  <p class="hero-desc">Handcrafted lokum, premium nuts, exotic spices and authentic sweets — steps away from the Blue Mosque.</p>
-  <div class="hero-cta-row">
-    <a href="#products" class="btn-primary">Explore Delights</a>
-    <a href="#visit" class="btn-ghost">Find Us</a>
-  </div>
-  <div class="hero-location">
+  <p class="hero-sub" data-i18n="hero_sub">The Finest Turkish Confections</p>
+
+  <!-- LOCATION — above description -->
+  <div class="hero-location" style="margin-top:28px; margin-bottom:0; opacity:.9; font-size:1rem;">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-    Next to the Blue Mosque (B Door), Istanbul
+    <span data-i18n="hero_location">Next to the Blue Mosque (B Door), Istanbul</span>
+  </div>
+
+  <p class="hero-desc" data-i18n="hero_desc">Handcrafted lokum, premium nuts, exotic spices and authentic sweets — steps away from the Blue Mosque.</p>
+  <div class="hero-cta-row">
+    <a href="#products" class="btn-primary" data-i18n="cta_explore">Explore Delights</a>
+    <a href="#visit" class="btn-ghost" data-i18n="cta_find">Find Us</a>
   </div>
   <div class="scroll-hint">
-    <span>Discover</span>
+    <span data-i18n="scroll_hint">Discover</span>
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14m-7-7 7 7 7-7"/></svg>
   </div>
 </section>
 
 <!-- ═══ ABOUT ═══ -->
 <section id="about">
-  <p class="section-label reveal">Our Story</p>
-  <h2 class="section-title reveal">A Royal Heritage<br>of Sweetness</h2>
+  <p class="section-label reveal" data-i18n="about_label">Our Story</p>
+  <h2 class="section-title reveal" data-i18n="about_title">A Royal Heritage<br>of Sweetness</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
 
   <div class="about-inner">
     <div class="about-text reveal">
-      <p>Nestled in the heart of historic Sultanahmet, <strong>King Delight</strong> brings the timeless tradition of Ottoman confectionery to the world's most curious travellers.</p>
-      <p>From <strong>rose-scented lokum</strong> to hand-roasted pistachios, every piece is crafted with authentic recipes passed through generations — a true taste of Istanbul's soul.</p>
-      <p>Whether you're shopping for a gift or indulging yourself, our shop is an experience in itself — fragrant, colourful, and warmly welcoming.</p>
+      <p data-i18n="about_p1">Nestled in the heart of historic Sultanahmet, <strong>King Delight</strong> brings the timeless tradition of Ottoman confectionery to the world's most curious travellers.</p>
+      <p data-i18n="about_p2">From <strong>rose-scented lokum</strong> to hand-roasted pistachios, every piece is crafted with authentic recipes passed through generations — a true taste of Istanbul's soul.</p>
+      <p data-i18n="about_p3">Whether you're shopping for a gift or indulging yourself, our shop is an experience in itself — fragrant, colourful, and warmly welcoming.</p>
     </div>
     <div class="about-stats reveal">
       <div class="stat-card">
         <span class="stat-num">50+</span>
-        <span class="stat-label">Varieties</span>
+        <span class="stat-label" data-i18n="stat_varieties">Varieties</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">100%</span>
-        <span class="stat-label">Authentic</span>
+        <span class="stat-label" data-i18n="stat_authentic">Authentic</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">∞</span>
-        <span class="stat-label">Flavour</span>
+        <span class="stat-label" data-i18n="stat_flavour">Flavour</span>
       </div>
       <div class="stat-card">
         <span class="stat-num">⭐⭐⭐⭐⭐</span>
-        <span class="stat-label">Rated</span>
+        <span class="stat-label" data-i18n="stat_rated">Rated</span>
       </div>
     </div>
   </div>
@@ -814,55 +951,57 @@
 
 <!-- ═══ PRODUCTS ═══ -->
 <section id="products">
-  <p class="section-label reveal">What We Offer</p>
-  <h2 class="section-title reveal">Our Delights</h2>
+  <p class="section-label reveal" data-i18n="products_label">What We Offer</p>
+  <h2 class="section-title reveal" data-i18n="products_title">Our Delights</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
 
   <div class="products-grid reveal">
     <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=600&q=80" alt="Turkish Lokum" loading="lazy"/></div>
-      <div class="product-card-tag">Signature</div>
+      <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipPcUL5RKBhGhMTiPEYcedSlwfg9Erqqe0l8CNoi=s680-w680-h510-rw" alt="Turkish Lokum" loading="lazy"/></div>
+      <div class="product-card-tag" data-i18n="tag_signature">Signature</div>
       <div class="product-card-content">
-        <div class="product-card-name">Turkish Lokum</div>
-        <div class="product-card-desc">Rose, pistachio, pomegranate & dozens more. The original Ottoman delight.</div>
+        <div class="product-card-name" data-i18n="prod_lokum_name">Turkish Lokum</div>
+        <div class="product-card-desc" data-i18n="prod_lokum_desc">Rose, pistachio, pomegranate & dozens more. The original Ottoman delight.</div>
       </div>
     </div>
     <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1674076592971-716676c4ba9c?w=600&q=80" alt="Premium Nuts" loading="lazy"/></div>
+      <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipNwLGMp5Np6GWGgKEADRqjqiJ0OdgOxfWsNpfZH=s680-w680-h510-rw" alt="Ottoman Perfumes" loading="lazy"/></div>
+      <div class="product-card-tag" data-i18n="tag_new">New</div>
       <div class="product-card-content">
-        <div class="product-card-name">Premium Nuts</div>
-        <div class="product-card-desc">Hand-roasted pistachios, cashews, walnuts and almonds, fresh daily.</div>
+        <div class="product-card-name" data-i18n="prod_perfume_name">Ottoman Perfumes</div>
+        <div class="product-card-desc" data-i18n="prod_perfume_desc">Rare oud, rose water & amber — timeless oriental fragrances bottled in Istanbul.</div>
+      </div>
+    </div>
+    <div class="product-card">
+      <div class="product-card-bg"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=600&q=80" alt="Artisan Savon" loading="lazy"/></div>
+      <div class="product-card-content">
+        <div class="product-card-name" data-i18n="prod_savon_name">Artisan Savon</div>
+        <div class="product-card-desc" data-i18n="prod_savon_desc">Handcrafted Turkish soaps with olive oil, rose & laurel — pure, natural, luxurious.</div>
       </div>
     </div>
     <div class="product-card">
       <div class="product-card-bg"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=600&q=80" alt="Baklava" loading="lazy"/></div>
-      <div class="product-card-tag">Popular</div>
+      <div class="product-card-tag" data-i18n="tag_popular">Popular</div>
       <div class="product-card-content">
-        <div class="product-card-name">Baklava</div>
-        <div class="product-card-desc">Layers of golden pastry, honey and nuts. Crispy, flaky perfection.</div>
+        <div class="product-card-name" data-i18n="prod_baklava_name">Baklava</div>
+        <div class="product-card-desc" data-i18n="prod_baklava_desc">Layers of golden pastry, honey and nuts. Crispy, flaky perfection.</div>
       </div>
     </div>
     <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=600&q=80" alt="Exotic Spices" loading="lazy"/></div>
+      <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipNvLem1NZBBxgQasWEvJqWLJpgZwycecLEwi8Rn=s680-w680-h510-rw" alt="Exotic Spices" loading="lazy"/></div>
       <div class="product-card-content">
-        <div class="product-card-name">Exotic Spices</div>
-        <div class="product-card-desc">Saffron, sumac, za'atar and signature spice blends from the Grand Bazaar.</div>
+        <div class="product-card-name" data-i18n="prod_spices_name">Exotic Spices</div>
+        <div class="product-card-desc" data-i18n="prod_spices_desc">Saffron, sumac, za'atar and signature spice blends from the Grand Bazaar.</div>
       </div>
     </div>
     <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1676232731729-c06e936bbd96?w=600&q=80" alt="Turkish Tea" loading="lazy"/></div>
+      <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipMY_CM976EybAj7kNA1EhyLEkeKPrqv3x-A3SUp=s680-w680-h510-rw" alt="Turkish Tea" loading="lazy"/></div>
       <div class="product-card-content">
-        <div class="product-card-name">Turkish Tea </div>
-        <div class="product-card-desc">Premium çay herbal infusions to take home.</div>
+        <div class="product-card-name" data-i18n="prod_tea_name">Turkish Tea</div>
+        <div class="product-card-desc" data-i18n="prod_tea_desc">Premium çay herbal infusions to take home.</div>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1670351230643-27f874d17025?w=600&q=80" alt="Coffee" loading="lazy"/></div>
-      <div class="product-card-tag">New</div>
-      <div class="product-card-content">
-        <div class="product-card-name">Coffee</div>
-        <div class="product-card-desc">Rich Turkish coffee served the traditional Ottoman way — bold, aromatic and unforgettable.</div>
-      </div>
+    
     </div>
   </div>
 </section>
@@ -872,7 +1011,6 @@
   <div class="gallery-track">
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=400&q=70" alt="Baklava" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1674076592971-716676c4ba9c?w=400&q=70" alt="Nuts" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=400&q=70" alt="Spices" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1676232731729-c06e936bbd96?w=400&q=70" alt="Tea" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Gift Box" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
@@ -881,7 +1019,6 @@
     <!-- duplicate for seamless loop -->
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=400&q=70" alt="Baklava" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1674076592971-716676c4ba9c?w=400&q=70" alt="Nuts" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=400&q=70" alt="Spices" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1676232731729-c06e936bbd96?w=400&q=70" alt="Tea" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Gift Box" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
@@ -892,61 +1029,61 @@
 
 <!-- ═══ WHY US ═══ -->
 <section id="why">
-  <p class="section-label reveal">Why Choose Us</p>
-  <h2 class="section-title reveal">The King's Promise</h2>
+  <p class="section-label reveal" data-i18n="why_label">Why Choose Us</p>
+  <h2 class="section-title reveal" data-i18n="why_title">The King's Promise</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
 
   <div class="why-grid">
     <div class="why-card reveal">
       <img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=300&q=80" alt="Authentic" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
-      <div class="why-title">Authentic Recipes</div>
-      <p class="why-desc">Every sweet follows time-honoured Ottoman recipes with no shortcuts.</p>
+      <div class="why-title" data-i18n="why1_title">Authentic Recipes</div>
+      <p class="why-desc" data-i18n="why1_desc">Every sweet follows time-honoured Ottoman recipes with no shortcuts.</p>
     </div>
     <div class="why-card reveal">
       <img crossorigin="anonymous" src="https://images.unsplash.com/photo-1649333195003-18c47d64ed18?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Istanbul" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
-      <div class="why-title">Prime Location</div>
-      <p class="why-desc">Steps from the iconic Blue Mosque in the heart of historic Sultanahmet.</p>
+      <div class="why-title" data-i18n="why2_title">Prime Location</div>
+      <p class="why-desc" data-i18n="why2_desc">Steps from the iconic Blue Mosque in the heart of historic Sultanahmet.</p>
     </div>
     <div class="why-card reveal">
       <img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1682089094675-a8f9aff0ff31?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Service" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
-      <div class="why-title">Personal Service</div>
-      <p class="why-desc">We're always here to help you choose the perfect flavours and gifts.</p>
+      <div class="why-title" data-i18n="why3_title">Personal Service</div>
+      <p class="why-desc" data-i18n="why3_desc">We're always here to help you choose the perfect flavours and gifts.</p>
     </div>
   </div>
 </section>
 
 <!-- ═══ TESTIMONIALS ═══ -->
 <section id="testimonials">
-  <p class="section-label reveal">Visitors Say</p>
-  <h2 class="section-title reveal">Words of Delight</h2>
+  <p class="section-label reveal" data-i18n="test_label">Visitors Say</p>
+  <h2 class="section-title reveal" data-i18n="test_title">Words of Delight</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
 
   <div class="testimonials-grid">
     <div class="testimonial reveal">
       <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">The most incredible lokum I've ever tasted. The rose & pistachio combination was absolutely divine — I bought three boxes to take home to my family.</p>
-      <div class="testimonial-author">— Sarah M., London</div>
+      <p class="testimonial-text" data-i18n="test1_text">The most incredible lokum I've ever tasted. The rose & pistachio combination was absolutely divine — I bought three boxes to take home to my family.</p>
+      <div class="testimonial-author" data-i18n="test1_author">— Sarah M., London</div>
+    </div>
+    <div class="testimonial reveal">
+      <div class="testimonial-stars">★★★★</div>
+      <p class="testimonial-text" data-i18n="test2_text">A hidden gem right next to the Blue Mosque. The owner was so warm and let us taste everything. We came back three days in a row on our holiday!</p>
+      <div class="testimonial-author" data-i18n="test2_author">— Carlos R., Madrid</div>
     </div>
     <div class="testimonial reveal">
       <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">A hidden gem right next to the Blue Mosque. The owner was so warm and let us taste everything. We came back three days in a row on our holiday!</p>
-      <div class="testimonial-author">— Carlos R., Madrid</div>
-    </div>
-    <div class="testimonial reveal">
-      <div class="testimonial-stars">★★★★★</div>
-      <p class="testimonial-text">Contacted them on WhatsApp before arriving and they prepared a beautiful custom gift box for me. The quality is outstanding and the packaging is gorgeous. Highly recommend!</p>
-      <div class="testimonial-author">— Aisha K., Dubai</div>
+      <p class="testimonial-text" data-i18n="test3_text">Contacted them on WhatsApp before arriving and they prepared a beautiful custom gift box for me. The quality is outstanding and the packaging is gorgeous. Highly recommend!</p>
+      <div class="testimonial-author" data-i18n="test3_author">— Aisha K., Dubai</div>
     </div>
   </div>
 </section>
 
 <!-- ═══ VISITOR PHOTOS ═══ -->
 <section id="visitor-photos">
-  <p class="section-label reveal">Our Guests</p>
-  <h2 class="section-title reveal">Happy Visitors</h2>
+  <p class="section-label reveal" data-i18n="photos_label">Our Guests</p>
+  <h2 class="section-title reveal" data-i18n="photos_title">Happy Visitors</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
 
-  <p class="visitor-intro reveal">
+  <p class="visitor-intro reveal" data-i18n="photos_intro">
     Every day, travellers from around the world step through our doors.<br>
     <em>These are their moments of delight.</em>
   </p>
@@ -994,45 +1131,45 @@
   </div>
 
   <div class="visitor-share-cta reveal">
-    <p>Visited us? Tag us on Instagram <em>@king.delight1</em> — your photo might appear here! 📸</p>
-    <a href="https://www.instagram.com/king.delight1" target="_blank" class="btn-primary" style="font-size:.75rem;">Share Your Moment</a>
-  <div class="visitor-tag">📸 </div>
+    <p data-i18n="photos_cta">Visited us? Tag us on Instagram <em>@king.delight1</em> — your photo might appear here! 📸</p>
+    <a href="https://www.instagram.com/king.delight1" target="_blank" class="btn-primary" style="font-size:.75rem;" data-i18n="photos_btn">Share Your Moment</a>
+  <div class="visitor-tag"></div>
   </div>
 </section>
 
 <!-- ═══ VISIT ═══ -->
 <section id="visit">
-  <p class="section-label reveal">Come See Us</p>
-  <h2 class="section-title reveal">Visit the Shop</h2>
+  <p class="section-label reveal" data-i18n="visit_label">Come See Us</p>
+  <h2 class="section-title reveal" data-i18n="visit_title">Visit the Shop</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
 
   <div class="contact-grid">
     <div class="contact-card reveal">
       <img crossorigin="anonymous" src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=80" alt="Istanbul Blue Mosque" style="width:100%;height:120px;object-fit:cover;margin-bottom:16px;"/>
-      <div class="contact-card-title">Location</div>
-      <div class="contact-card-value">
+      <div class="contact-card-title" data-i18n="visit_loc_title">Location</div>
+      <div class="contact-card-value" data-i18n="visit_loc_value">
         Next to the Blue Mosque<br>(B Door), Sultanahmet<br>Istanbul, Turkey
       </div>
     </div>
   
     <div class="contact-card reveal">
-      <img crossorigin="anonymous" src="https://instagram.fist7-1.fna.fbcdn.net/v/t51.82787-15/655228929_17861937057656108_947804338069352360_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=111&ig_cache_key=Mzg1ODU3MjgyOTE2ODI3OTAxNQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4ODEwLnNkci5DMyJ9&_nc_ohc=MAFhd0OKw5sQ7kNvwGKfse_&_nc_oc=Adoyme8vqCpVbWrg_IB8rDYFWmGLwyo-wipOZPpPLvFINxUFRG7Qcnkjn-s0p5bhlPyvzJ5rV8gKPrGKMREM-Dm4&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fist7-1.fna&_nc_gid=ZoVM-h-29mG25QME47CjnQ&_nc_ss=7a32e&oh=00_AfxovgS53W5CIPOaX2VuNiVzN-lTNGihtF0nlexBz0hYuQ&oe=69CDE716" alt="Instagram" style="width:100%;height:120px;margin-bottom:16px;"/>
-      <div class="contact-card-title">Instagram</div>
+      <img crossorigin="anonymous" src="https://i.imgur.com/UkooTE9.png" alt="Instagram" style="width:100%;height:120px;margin-bottom:16px;"/>
+      <div class="contact-card-title" data-i18n="visit_ig_title">Instagram</div>
       <div class="contact-card-value">
         <a href="https://www.instagram.com/king.delight1" target="_blank">@king.delight1</a><br>
-        <br>Follow for daily delights
+        <br><span data-i18n="visit_ig_follow">Follow for daily delights</span>
       </div>
     </div>
     <div class="contact-card reveal">
       <img crossorigin="anonymous" src="https://img.freepik.com/premium-vector/gold-map-point-location-icon-vector-template_917138-5330.jpg" alt="Map" style="width:100%;height:120px;object-fit:cover;margin-bottom:16px;"/>
-      <div class="contact-card-title">Find Us on Maps</div>
+      <div class="contact-card-title" data-i18n="visit_map_title">Find Us on Maps</div>
       <div class="contact-card-value">
-        <a href="https://www.google.com/maps/place/KING+DELIGHT/@41.0065801,28.9767228,17z/data=!3m1!4b1!4m6!3m5!1s0x14cab926554226b9:0x84dca76db9abc2a9!8m2!3d41.0065801!4d28.9767228!16s%2Fg%2F11rwq_9knf?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank">Open in Google Maps →</a>
+        <a href="https://www.google.com/maps/place/KING+DELIGHT/@41.0065801,28.9767228,17z/data=!3m1!4b1!4m6!3m5!1s0x14cab926554226b9:0x84dca76db9abc2a9!8m2!3d41.0065801!4d28.9767228!16s%2Fg%2F11rwq_9knf?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="visit_map_link">Open in Google Maps →</a>
       </div>
     </div>
   </div>
 
-  <a href="https://wa.me/905312270999" class="btn-primary" style="font-size:.8rem;">
+  <a href="https://wa.me/905312270999" class="btn-primary" style="font-size:.8rem;" data-i18n="visit_whatsapp">
     Contact Us on WhatsApp
   </a>
 </section>
@@ -1040,7 +1177,7 @@
 <!-- ═══ FOOTER ═══ -->
 <footer>
   <div class="footer-brand">King Delight</div>
-  <div class="footer-copy">© 2026 King Delight Istanbul. All rights reserved.</div>
+  <div class="footer-copy" data-i18n="footer_copy">© 2026 King Delight Istanbul. All rights reserved.</div>
   <div class="footer-social" style="display:flex;gap:20px;align-items:center;">
     <a href="https://www.instagram.com/king.delight1" target="_blank" style="display:flex;align-items:center;gap:6px;color:var(--gold-pale);opacity:.55;text-decoration:none;font-size:.8rem;letter-spacing:.12em;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">
       <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
@@ -1078,6 +1215,313 @@
   </a>
 
 </div>
+
+<script>
+  // ══════════════════════════════════════
+  //  FULL PAGE TRANSLATIONS — EN / FR / ES / RU
+  // ══════════════════════════════════════
+  const translations = {
+    en: {
+      // HERO
+      hero_badge:    "Istanbul · Est. Sultanahmet",
+      hero_sub:      "The Finest Turkish Confections",
+      hero_location: "Next to the Blue Mosque (B Door), Istanbul",
+      hero_desc:     "Handcrafted lokum, premium nuts, exotic spices and authentic sweets — steps away from the Blue Mosque.",
+      cta_explore:   "Explore Delights",
+      cta_find:      "Find Us",
+      scroll_hint:   "Discover",
+      // ABOUT
+      about_label:   "Our Story",
+      about_title:   "A Royal Heritage<br>of Sweetness",
+      about_p1:      "Nestled in the heart of historic Sultanahmet, <strong>King Delight</strong> brings the timeless tradition of Ottoman confectionery to the world's most curious travellers.",
+      about_p2:      "From <strong>rose-scented lokum</strong> to hand-roasted pistachios, every piece is crafted with authentic recipes passed through generations — a true taste of Istanbul's soul.",
+      about_p3:      "Whether you're shopping for a gift or indulging yourself, our shop is an experience in itself — fragrant, colourful, and warmly welcoming.",
+      stat_varieties:"Varieties",
+      stat_authentic:"Authentic",
+      stat_flavour:  "Flavour",
+      stat_rated:    "Rated",
+      // PRODUCTS
+      products_label:"What We Offer",
+      products_title:"Our Delights",
+      tag_signature: "Signature",
+      tag_new:       "New",
+      tag_popular:   "Popular",
+      prod_lokum_name:   "Turkish Lokum",
+      prod_lokum_desc:   "Rose, pistachio, pomegranate & dozens more. The original Ottoman delight.",
+      prod_perfume_name: "Ottoman Perfumes",
+      prod_perfume_desc: "Rare oud, rose water & amber — timeless oriental fragrances bottled in Istanbul.",
+      prod_savon_name:   "Artisan Savon",
+      prod_savon_desc:   "Handcrafted Turkish soaps with olive oil, rose & laurel — pure, natural, luxurious.",
+      prod_baklava_name: "Baklava",
+      prod_baklava_desc: "Layers of golden pastry, honey and nuts. Crispy, flaky perfection.",
+      prod_spices_name:  "Exotic Spices",
+      prod_spices_desc:  "Saffron, sumac, za'atar and signature spice blends from the Grand Bazaar.",
+      prod_tea_name:     "Turkish Tea",
+      prod_tea_desc:     "Premium çay herbal infusions to take home.",
+      prod_coffee_name:  "Coffee",
+      prod_coffee_desc:  "Rich Turkish coffee served the traditional Ottoman way — bold, aromatic and unforgettable.",
+      // WHY US
+      why_label:   "Why Choose Us",
+      why_title:   "The King's Promise",
+      why1_title:  "Authentic Recipes",
+      why1_desc:   "Every sweet follows time-honoured Ottoman recipes with no shortcuts.",
+      why2_title:  "Prime Location",
+      why2_desc:   "Steps from the iconic Blue Mosque in the heart of historic Sultanahmet.",
+      why3_title:  "Personal Service",
+      why3_desc:   "We're always here to help you choose the perfect flavours and gifts.",
+      // TESTIMONIALS
+      test_label:    "Visitors Say",
+      test_title:    "Words of Delight",
+      test1_text:    "The most incredible lokum I've ever tasted. The rose & pistachio combination was absolutely divine — I bought three boxes to take home to my family.",
+      test1_author:  "— Sarah M., London",
+      test2_text:    "A hidden gem right next to the Blue Mosque. The owner was so warm and let us taste everything. We came back three days in a row on our holiday!",
+      test2_author:  "— Carlos R., Madrid",
+      test3_text:    "Contacted them on WhatsApp before arriving and they prepared a beautiful custom gift box for me. The quality is outstanding and the packaging is gorgeous. Highly recommend!",
+      test3_author:  "— Aisha K., Dubai",
+      // VISITOR PHOTOS
+      photos_label:  "Our Guests",
+      photos_title:  "Happy Visitors",
+      photos_intro:  "Every day, travellers from around the world step through our doors. These are their moments of delight.",
+      photos_cta:    "Visited us? Tag us on Instagram @king.delight1 — your photo might appear here! 📸",
+      photos_btn:    "Share Your Moment",
+      // VISIT
+      visit_label:     "Come See Us",
+      visit_title:     "Visit the Shop",
+      visit_loc_title: "Location",
+      visit_loc_value: "Next to the Blue Mosque<br>(B Door), Sultanahmet<br>Istanbul, Turkey",
+      visit_ig_title:  "Instagram",
+      visit_ig_follow: "Follow for daily delights",
+      visit_map_title: "Find Us on Maps",
+      visit_map_link:  "Open in Google Maps →",
+      visit_whatsapp:  "Contact Us on WhatsApp",
+      // FOOTER
+      footer_copy: "© 2026 King Delight Istanbul. All rights reserved.",
+    },
+
+    fr: {
+      hero_badge:    "Istanbul · Fondé à Sultanahmet",
+      hero_sub:      "Les Plus Fines Confiseries Turques",
+      hero_location: "À côté de la Mosquée Bleue (Porte B), Istanbul",
+      hero_desc:     "Lokum artisanal, épices exotiques et douceurs authentiques — à deux pas de la Mosquée Bleue.",
+      cta_explore:   "Découvrir",
+      cta_find:      "Nous Trouver",
+      scroll_hint:   "Découvrir",
+      about_label:   "Notre Histoire",
+      about_title:   "Un Héritage Royal<br>de Douceurs",
+      about_p1:      "Niché au cœur du Sultanahmet historique, <strong>King Delight</strong> perpétue la tradition ottomane de la confiserie pour les voyageurs du monde entier.",
+      about_p2:      "Du <strong>lokum à la rose</strong> aux pistaches grillées à la main, chaque pièce est façonnée selon des recettes authentiques transmises de génération en génération.",
+      about_p3:      "Que vous cherchiez un cadeau ou un plaisir pour vous-même, notre boutique est une expérience à part entière — parfumée, colorée et chaleureuse.",
+      stat_varieties:"Variétés",
+      stat_authentic:"Authentique",
+      stat_flavour:  "Saveur",
+      stat_rated:    "Noté",
+      products_label:"Ce Que Nous Offrons",
+      products_title:"Nos Délices",
+      tag_signature: "Signature",
+      tag_new:       "Nouveau",
+      tag_popular:   "Populaire",
+      prod_lokum_name:   "Lokum Turc",
+      prod_lokum_desc:   "Rose, pistache, grenade et des dizaines d'autres. Le délice ottoman original.",
+      prod_perfume_name: "Parfums Ottomans",
+      prod_perfume_desc: "Oud rare, eau de rose et ambre — fragrances orientales intemporelles d'Istanbul.",
+      prod_savon_name:   "Savon Artisanal",
+      prod_savon_desc:   "Savons turcs artisanaux à l'huile d'olive, à la rose et au laurier — purs, naturels, luxueux.",
+      prod_baklava_name: "Baklava",
+      prod_baklava_desc: "Couches de pâte dorée, miel et noix. Une perfection croustillante et feuilletée.",
+      prod_spices_name:  "Épices Exotiques",
+      prod_spices_desc:  "Safran, sumac, za'atar et mélanges d'épices signature du Grand Bazar.",
+      prod_tea_name:     "Thé Turc",
+      prod_tea_desc:     "Infusions de çay premium à emporter chez vous.",
+      prod_coffee_name:  "Café",
+      prod_coffee_desc:  "Riche café turc servi à la manière ottomane traditionnelle — intense, aromatique et inoubliable.",
+      why_label:   "Pourquoi Nous Choisir",
+      why_title:   "La Promesse Royale",
+      why1_title:  "Recettes Authentiques",
+      why1_desc:   "Chaque douceur suit des recettes ottomanes séculaires, sans compromis.",
+      why2_title:  "Emplacement Idéal",
+      why2_desc:   "À quelques pas de la Mosquée Bleue, au cœur du Sultanahmet historique.",
+      why3_title:  "Service Personnalisé",
+      why3_desc:   "Nous sommes toujours là pour vous aider à choisir les saveurs et cadeaux parfaits.",
+      test_label:    "Nos Visiteurs Disent",
+      test_title:    "Mots de Délice",
+      test1_text:    "Le lokum le plus incroyable que j'aie jamais goûté. La combinaison rose et pistache était absolument divine — j'ai acheté trois boîtes pour ma famille.",
+      test1_author:  "— Sarah M., Londres",
+      test2_text:    "Une perle cachée juste à côté de la Mosquée Bleue. Le propriétaire était si chaleureux et nous a tout fait goûter. Nous sommes revenus trois jours de suite !",
+      test2_author:  "— Carlos R., Madrid",
+      test3_text:    "Je les ai contactés sur WhatsApp avant d'arriver et ils ont préparé un magnifique coffret cadeau personnalisé. La qualité est exceptionnelle. Hautement recommandé !",
+      test3_author:  "— Aisha K., Dubaï",
+      photos_label:  "Nos Invités",
+      photos_title:  "Visiteurs Heureux",
+      photos_intro:  "Chaque jour, des voyageurs du monde entier franchissent nos portes. Voici leurs moments de délice.",
+      photos_cta:    "Vous nous avez rendus visite ? Taguez-nous sur Instagram @king.delight1 — votre photo pourrait apparaître ici ! 📸",
+      photos_btn:    "Partager Votre Moment",
+      visit_label:     "Venez Nous Voir",
+      visit_title:     "Visiter la Boutique",
+      visit_loc_title: "Adresse",
+      visit_loc_value: "À côté de la Mosquée Bleue<br>(Porte B), Sultanahmet<br>Istanbul, Turquie",
+      visit_ig_title:  "Instagram",
+      visit_ig_follow: "Suivez-nous pour les délices du jour",
+      visit_map_title: "Nous Trouver sur Maps",
+      visit_map_link:  "Ouvrir dans Google Maps →",
+      visit_whatsapp:  "Contactez-nous sur WhatsApp",
+      footer_copy: "© 2026 King Delight Istanbul. Tous droits réservés.",
+    },
+
+    es: {
+      hero_badge:    "Estambul · Est. Sultanahmet",
+      hero_sub:      "Las Mejores Confituras Turcas",
+      hero_location: "Junto a la Mezquita Azul (Puerta B), Estambul",
+      hero_desc:     "Lokum artesanal, especias exóticas y dulces auténticos — a pasos de la Mezquita Azul.",
+      cta_explore:   "Explorar",
+      cta_find:      "Encuéntranos",
+      scroll_hint:   "Descubrir",
+      about_label:   "Nuestra Historia",
+      about_title:   "Una Herencia Real<br>de Dulzura",
+      about_p1:      "Ubicado en el corazón del histórico Sultanahmet, <strong>King Delight</strong> trae la tradición otomana de confitería a los viajeros más curiosos del mundo.",
+      about_p2:      "Desde el <strong>lokum con aroma a rosa</strong> hasta los pistachos tostados a mano, cada pieza está elaborada con recetas auténticas transmitidas de generación en generación.",
+      about_p3:      "Ya sea que compre un regalo o se dé un capricho, nuestra tienda es una experiencia en sí misma — fragante, colorida y cálidamente acogedora.",
+      stat_varieties:"Variedades",
+      stat_authentic:"Auténtico",
+      stat_flavour:  "Sabor",
+      stat_rated:    "Valorado",
+      products_label:"Lo Que Ofrecemos",
+      products_title:"Nuestros Delicias",
+      tag_signature: "Firma",
+      tag_new:       "Nuevo",
+      tag_popular:   "Popular",
+      prod_lokum_name:   "Lokum Turco",
+      prod_lokum_desc:   "Rosa, pistacho, granada y docenas más. El delicia otomana original.",
+      prod_perfume_name: "Perfumes Otomanos",
+      prod_perfume_desc: "Oud raro, agua de rosas y ámbar — fragancias orientales atemporales embotelladas en Estambul.",
+      prod_savon_name:   "Jabón Artesanal",
+      prod_savon_desc:   "Jabones turcos artesanales con aceite de oliva, rosa y laurel — puros, naturales, lujosos.",
+      prod_baklava_name: "Baklava",
+      prod_baklava_desc: "Capas de hojaldre dorado, miel y nueces. Perfección crujiente y hojaldrada.",
+      prod_spices_name:  "Especias Exóticas",
+      prod_spices_desc:  "Azafrán, zumaque, za'atar y mezclas de especias del Gran Bazar.",
+      prod_tea_name:     "Té Turco",
+      prod_tea_desc:     "Infusiones de çay premium para llevar a casa.",
+      prod_coffee_name:  "Café",
+      prod_coffee_desc:  "Rico café turco servido a la manera otomana tradicional — intenso, aromático e inolvidable.",
+      why_label:   "Por Qué Elegirnos",
+      why_title:   "La Promesa Real",
+      why1_title:  "Recetas Auténticas",
+      why1_desc:   "Cada dulce sigue recetas otomanas centenarias sin atajos.",
+      why2_title:  "Ubicación Privilegiada",
+      why2_desc:   "A pasos de la icónica Mezquita Azul en el corazón del histórico Sultanahmet.",
+      why3_title:  "Servicio Personal",
+      why3_desc:   "Siempre estamos aquí para ayudarle a elegir los sabores y regalos perfectos.",
+      test_label:    "Dicen los Visitantes",
+      test_title:    "Palabras de Deleite",
+      test1_text:    "El lokum más increíble que he probado. La combinación de rosa y pistacho era absolutamente divina — compré tres cajas para llevar a mi familia.",
+      test1_author:  "— Sarah M., Londres",
+      test2_text:    "Una joya escondida justo al lado de la Mezquita Azul. El dueño fue tan amable y nos dejó probar todo. ¡Volvimos tres días seguidos en nuestras vacaciones!",
+      test2_author:  "— Carlos R., Madrid",
+      test3_text:    "Los contacté por WhatsApp antes de llegar y prepararon una hermosa caja de regalo personalizada. La calidad es excepcional. ¡Muy recomendado!",
+      test3_author:  "— Aisha K., Dubái",
+      photos_label:  "Nuestros Huéspedes",
+      photos_title:  "Visitantes Felices",
+      photos_intro:  "Cada día, viajeros de todo el mundo cruzan nuestras puertas. Estos son sus momentos de deleite.",
+      photos_cta:    "¿Nos visitaste? ¡Etiquétanos en Instagram @king.delight1 — tu foto podría aparecer aquí! 📸",
+      photos_btn:    "Comparte Tu Momento",
+      visit_label:     "Ven a Vernos",
+      visit_title:     "Visita la Tienda",
+      visit_loc_title: "Ubicación",
+      visit_loc_value: "Junto a la Mezquita Azul<br>(Puerta B), Sultanahmet<br>Estambul, Turquía",
+      visit_ig_title:  "Instagram",
+      visit_ig_follow: "Síguenos para delicias diarias",
+      visit_map_title: "Encuéntranos en Maps",
+      visit_map_link:  "Abrir en Google Maps →",
+      visit_whatsapp:  "Contáctanos por WhatsApp",
+      footer_copy: "© 2026 King Delight Istanbul. Todos los derechos reservados.",
+    },
+
+    ru: {
+      hero_badge:    "Стамбул · Основан в Султанахмете",
+      hero_sub:      "Лучшие Турецкие Сладости",
+      hero_location: "Рядом с Голубой Мечетью (Вход B), Стамбул",
+      hero_desc:     "Ручной лукум, экзотические специи и аутентичные сладости — в шаге от Голубой Мечети.",
+      cta_explore:   "Открыть",
+      cta_find:      "Найти нас",
+      scroll_hint:   "Узнать",
+      about_label:   "Наша История",
+      about_title:   "Королевское Наследие<br>Сладостей",
+      about_p1:      "Расположенный в самом сердце исторического Султанахмета, <strong>King Delight</strong> доносит вековые традиции османских кондитеров до самых любопытных путешественников мира.",
+      about_p2:      "От <strong>лукума с ароматом розы</strong> до обжаренных вручную фисташек — каждое изделие создаётся по аутентичным рецептам, передающимся из поколения в поколение.",
+      about_p3:      "Покупаете ли вы подарок или балуете себя — наш магазин сам по себе является незабываемым опытом: ароматным, красочным и сердечно приветливым.",
+      stat_varieties:"Видов",
+      stat_authentic:"Аутентично",
+      stat_flavour:  "Вкус",
+      stat_rated:    "Оценка",
+      products_label:"Что Мы Предлагаем",
+      products_title:"Наши Деликатесы",
+      tag_signature: "Фирменное",
+      tag_new:       "Новинка",
+      tag_popular:   "Популярное",
+      prod_lokum_name:   "Турецкий Лукум",
+      prod_lokum_desc:   "Роза, фисташки, гранат и десятки других вкусов. Оригинальный османский деликатес.",
+      prod_perfume_name: "Османские Духи",
+      prod_perfume_desc: "Редкий уд, розовая вода и янтарь — вечные восточные ароматы из Стамбула.",
+      prod_savon_name:   "Ремесленное Мыло",
+      prod_savon_desc:   "Турецкое ручное мыло с оливковым маслом, розой и лавром — чистое, натуральное, роскошное.",
+      prod_baklava_name: "Пахлава",
+      prod_baklava_desc: "Слои золотистого теста, мёда и орехов. Хрустящее, слоёное совершенство.",
+      prod_spices_name:  "Экзотические Специи",
+      prod_spices_desc:  "Шафран, сумах, за'атар и фирменные смеси специй из Большого Базара.",
+      prod_tea_name:     "Турецкий Чай",
+      prod_tea_desc:     "Премиальный чай-чай и травяные настои, чтобы взять домой.",
+      prod_coffee_name:  "Кофе",
+      prod_coffee_desc:  "Насыщенный турецкий кофе по традиционным османским рецептам — крепкий, ароматный, незабываемый.",
+      why_label:   "Почему Мы",
+      why_title:   "Королевское Обещание",
+      why1_title:  "Аутентичные Рецепты",
+      why1_desc:   "Каждая сладость создаётся по проверенным веками османским рецептам без компромиссов.",
+      why2_title:  "Идеальное Расположение",
+      why2_desc:   "В нескольких шагах от знаменитой Голубой Мечети в историческом Султанахмете.",
+      why3_title:  "Личный Сервис",
+      why3_desc:   "Мы всегда готовы помочь вам выбрать идеальные вкусы и подарки.",
+      test_label:    "Говорят Гости",
+      test_title:    "Слова Восхищения",
+      test1_text:    "Самый невероятный лукум, который я когда-либо пробовала. Сочетание розы и фисташек было просто божественным — я купила три коробки для семьи.",
+      test1_author:  "— Сара М., Лондон",
+      test2_text:    "Настоящий скрытый бриллиант у Голубой Мечети. Хозяин был очень тёплым и дал попробовать всё. Мы возвращались три дня подряд!",
+      test2_author:  "— Карлос Р., Мадрид",
+      test3_text:    "Связалась с ними в WhatsApp до приезда — они подготовили красивую коробку на заказ. Качество и упаковка превосходны. Очень рекомендую!",
+      test3_author:  "— Айша К., Дубай",
+      photos_label:  "Наши Гости",
+      photos_title:  "Счастливые Посетители",
+      photos_intro:  "Каждый день путешественники со всего мира переступают наш порог. Вот их моменты восхищения.",
+      photos_cta:    "Были у нас? Отметьте нас в Instagram @king.delight1 — ваше фото может появиться здесь! 📸",
+      photos_btn:    "Поделиться Моментом",
+      visit_label:     "Приходите к Нам",
+      visit_title:     "Посетите Магазин",
+      visit_loc_title: "Адрес",
+      visit_loc_value: "Рядом с Голубой Мечетью<br>(Вход B), Султанахмет<br>Стамбул, Турция",
+      visit_ig_title:  "Instagram",
+      visit_ig_follow: "Подписывайтесь на ежедневные вкусности",
+      visit_map_title: "Найти нас на Картах",
+      visit_map_link:  "Открыть в Google Maps →",
+      visit_whatsapp:  "Написать нам в WhatsApp",
+      footer_copy: "© 2026 King Delight Istanbul. Все права защищены.",
+    }
+  };
+
+  function setLang(lang) {
+    const t = translations[lang];
+    if (!t) return;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (t[key] !== undefined) {
+        // Use innerHTML for entries that contain HTML tags
+        el.innerHTML = t[key];
+      }
+    });
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+    });
+    document.documentElement.lang = lang;
+  }
+</script>
 
 <script>
   // Scroll reveal
