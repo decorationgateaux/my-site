@@ -887,6 +887,7 @@
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
+    <button class="lang-btn" onclick="setLang('ar')">AR</button>
     <button class="lang-btn" onclick="setLang('es')">ES</button>
     <button class="lang-btn" onclick="setLang('ru')">RU</button>
   </div>
@@ -1369,6 +1370,61 @@
       visit_whatsapp:  "Contactez-nous sur WhatsApp",
       footer_copy: "© 2026 King Delight Istanbul. Tous droits réservés.",
     },
+    ar: {
+  hero_badge: "إسطنبول · تأسس في السلطان أحمد",
+  hero_sub: "أفخر الحلويات التركية",
+  hero_location: "بجانب الجامع الأزرق (باب B)، إسطنبول",
+  hero_desc: "راحة تركية مصنوعة يدويًا، مكسرات فاخرة، توابل مميزة وحلويات أصيلة — على بعد خطوات من الجامع الأزرق.",
+  cta_explore: "اكتشف الحلويات",
+  cta_find: "اعثر علينا",
+  scroll_hint: "اكتشف",
+
+  about_label: "قصتنا",
+  about_title: "تراث ملكي<br>من الحلاوة",
+  about_p1: "في قلب السلطان أحمد التاريخي، يقدم <strong>King Delight</strong> تقاليد الحلويات العثمانية الأصيلة لزوار العالم.",
+  about_p2: "من <strong>راحة الحلقوم بنكهة الورد</strong> إلى الفستق المحمص يدويًا، كل قطعة مصنوعة بوصفات أصيلة عبر الأجيال.",
+  about_p3: "سواء كنت تبحث عن هدية أو تدلل نفسك، متجرنا تجربة فريدة — عطرية، ملونة، ومرحبة.",
+
+  stat_varieties: "أنواع",
+  stat_authentic: "أصلي",
+  stat_flavour: "نكهة",
+  stat_rated: "تقييم",
+
+  products_label: "ماذا نقدم",
+  products_title: "منتجاتنا",
+  prod_lokum_name: "راحة تركية",
+  prod_lokum_desc: "ورد، فستق، رمان والمزيد — الحلوى العثمانية الأصلية.",
+  prod_perfume_name: "عطور عثمانية",
+  prod_perfume_desc: "عود نادر، ماء الورد والعنبر — عطور شرقية أصيلة.",
+  prod_savon_name: "صابون يدوي",
+  prod_savon_desc: "صابون تركي طبيعي بزيت الزيتون والورد والغار.",
+  prod_baklava_name: "بقلاوة",
+  prod_baklava_desc: "طبقات من العجين الذهبي مع العسل والمكسرات.",
+  prod_spices_name: "توابل مميزة",
+  prod_spices_desc: "زعفران، سماق، زعتر وخلطات خاصة.",
+  prod_tea_name: "شاي تركي",
+  prod_tea_desc: "شاي فاخر ومشروبات عشبية.",
+
+  tag_signature: "مميز",
+  tag_new: "جديد",
+  tag_popular: "الأكثر طلبًا",
+
+  why_label: "لماذا نحن",
+  why_title: "وعد الملك",
+  why1_title: "وصفات أصيلة",
+  why1_desc: "كل حلوى تُحضّر بوصفات عثمانية تقليدية.",
+  why2_title: "موقع مميز",
+  why2_desc: "خطوات من الجامع الأزرق في قلب السلطان أحمد.",
+  why3_title: "خدمة شخصية",
+  why3_desc: "نساعدك دائمًا لاختيار الأفضل.",
+
+  test_label: "آراء الزوار",
+  test_title: "كلمات رائعة",
+
+  photos_label: "ضيوفنا",
+  photos_title: "زوار سعداء",
+  photos_intro: "كل يوم، يزورنا أشخاص من جميع أنحاء العالم.<br><em>هذه لحظاتهم الجميلة.</em>"
+}
 
     es: {
       hero_badge:    "Estambul · Est. Sultanahmet",
@@ -1510,6 +1566,7 @@
   };
 
   function setLang(lang) {
+    
     const t = translations[lang];
     if (!t) return;
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1523,6 +1580,7 @@
       btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
     });
     document.documentElement.lang = lang;
+    document.documentElement.dir = (lang === 'ar') ? 'rtl' : 'ltr';
   }
 </script>
 
