@@ -16,650 +16,140 @@
       --brown: #3D1C10;
       --text: #2A1508;
     }
-
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
-
-    body {
-      background: var(--dark);
-      color: var(--cream);
-      font-family: 'Cormorant Garamond', serif;
-      overflow-x: hidden;
-    }
-
-    /* ══════════════════════════════════════
-       VISITOR PHOTOS
-    ══════════════════════════════════════ */
-    #visitor-photos {
-      background: linear-gradient(180deg, #1A0A05 0%, #200D05 50%, #1A0A05 100%);
-    }
-
-    .visitor-intro {
-      text-align: center;
-      max-width: 520px;
-      margin: 0 auto 56px;
-      color: #C9BAA0;
-      font-size: 1.1rem;
-      line-height: 1.75;
-    }
+    body { background: var(--dark); color: var(--cream); font-family: 'Cormorant Garamond', serif; overflow-x: hidden; }
+    #visitor-photos { background: linear-gradient(180deg, #1A0A05 0%, #200D05 50%, #1A0A05 100%); }
+    .visitor-intro { text-align: center; max-width: 520px; margin: 0 auto 56px; color: #C9BAA0; font-size: 1.1rem; line-height: 1.75; }
     .visitor-intro em { color: var(--gold-light); font-style: italic; }
-
-    .visitor-grid {
-      max-width: 1100px;
-      margin: 0 auto;
-      columns: 3 280px;
-      column-gap: 12px;
-    }
-
-    .visitor-photo {
-      break-inside: avoid;
-      margin-bottom: 12px;
-      position: relative;
-      overflow: hidden;
-      border: 1px solid rgba(201,146,42,.15);
-      cursor: pointer;
-      background: var(--brown);
-    }
-    .visitor-photo img {
-      width: 100%;
-      display: block;
-      transition: transform .5s ease;
-      object-fit: cover;
-    }
+    .visitor-grid { max-width: 1100px; margin: 0 auto; columns: 3 280px; column-gap: 12px; }
+    .visitor-photo { break-inside: avoid; margin-bottom: 12px; position: relative; overflow: hidden; border: 1px solid rgba(201,146,42,.15); cursor: pointer; background: var(--brown); }
+    .visitor-photo img { width: 100%; display: block; transition: transform .5s ease; object-fit: cover; }
     .visitor-photo:hover img { transform: scale(1.07); }
-
-    .visitor-photo-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 50%, rgba(26,10,5,.88) 100%);
-      opacity: 0;
-      transition: opacity .3s ease;
-      display: flex;
-      align-items: flex-end;
-      padding: 16px;
-    }
+    .visitor-photo-overlay { position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(26,10,5,.88) 100%); opacity: 0; transition: opacity .3s ease; display: flex; align-items: flex-end; padding: 16px; }
     .visitor-photo:hover .visitor-photo-overlay { opacity: 1; }
-
-    .visitor-caption {
-      color: var(--gold-pale);
-      font-size: .85rem;
-      letter-spacing: .08em;
-      font-style: italic;
-    }
-
-    .visitor-tag {
-      position: absolute;
-      top: 12px; left: 12px;
-      background: rgba(201,146,42,.85);
-      color: var(--dark);
-      font-size: .6rem;
-      letter-spacing: .25em;
-      text-transform: uppercase;
-      padding: 4px 10px;
-      font-family: 'Cinzel Decorative', cursive;
-    }
-
-    .visitor-share-cta {
-      text-align: center;
-      margin-top: 56px;
-    }
-    .visitor-share-cta p {
-      color: #C9BAA0;
-      font-size: 1rem;
-      margin-bottom: 20px;
-      letter-spacing: .06em;
-    }
+    .visitor-caption { color: var(--gold-pale); font-size: .85rem; letter-spacing: .08em; font-style: italic; }
+    .visitor-tag { position: absolute; top: 12px; left: 12px; background: rgba(201,146,42,.85); color: var(--dark); font-size: .6rem; letter-spacing: .25em; text-transform: uppercase; padding: 4px 10px; font-family: 'Cinzel Decorative', cursive; }
+    .visitor-share-cta { text-align: center; margin-top: 56px; }
+    .visitor-share-cta p { color: #C9BAA0; font-size: 1rem; margin-bottom: 20px; letter-spacing: .06em; }
     .visitor-share-cta p em { color: var(--gold-light); font-style: italic; }
-
-    /* ── NOISE OVERLAY ── */
-    body::before {
-      content: '';
-      position: fixed; inset: 0;
-      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-      pointer-events: none; z-index: 9999; opacity: .5;
-    }
-
-    /* ══════════════════════════════════════
-       HERO
-    ══════════════════════════════════════ */
-    #hero {
-      min-height: 100vh;
-      display: flex; flex-direction: column;
-      align-items: center; justify-content: center;
-      position: relative;
-      overflow: hidden;
-      background:
-        radial-gradient(ellipse 80% 60% at 50% 30%, #5C2A0A55 0%, transparent 70%),
-        radial-gradient(ellipse 60% 80% at 20% 80%, #8B1A2B33 0%, transparent 60%),
-        linear-gradient(160deg, #1A0A05 0%, #2B1006 50%, #1A0A05 100%);
-    }
-
-    /* Arabic-inspired geometric pattern */
-    #hero::before {
-      content: '';
-      position: absolute; inset: 0;
-      background-image:
-        repeating-linear-gradient(45deg, transparent, transparent 34px, rgba(201,146,42,.04) 34px, rgba(201,146,42,.04) 35px),
-        repeating-linear-gradient(-45deg, transparent, transparent 34px, rgba(201,146,42,.04) 34px, rgba(201,146,42,.04) 35px);
-      pointer-events: none;
-    }
-
-    .ornament-line {
-      display: flex; align-items: center; gap: 16px;
-      margin-bottom: 24px;
-      animation: fadeUp .9s ease both;
-    }
+    body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 9999; opacity: .5; }
+    #hero { min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; overflow: hidden; background: radial-gradient(ellipse 80% 60% at 50% 30%, #5C2A0A55 0%, transparent 70%), radial-gradient(ellipse 60% 80% at 20% 80%, #8B1A2B33 0%, transparent 60%), linear-gradient(160deg, #1A0A05 0%, #2B1006 50%, #1A0A05 100%); }
+    #hero::before { content: ''; position: absolute; inset: 0; background-image: repeating-linear-gradient(45deg, transparent, transparent 34px, rgba(201,146,42,.04) 34px, rgba(201,146,42,.04) 35px), repeating-linear-gradient(-45deg, transparent, transparent 34px, rgba(201,146,42,.04) 34px, rgba(201,146,42,.04) 35px); pointer-events: none; }
+    .ornament-line { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; animation: fadeUp .9s ease both; }
     .ornament-line span { color: var(--gold); font-size: 1.2rem; letter-spacing: .2em; }
-    .ornament-line::before, .ornament-line::after {
-      content: '';
-      flex: 1; max-width: 80px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold-light), transparent);
-    }
-
-    .hero-badge {
-      border: 1px solid var(--gold);
-      padding: 6px 24px;
-      font-size: .78rem;
-      letter-spacing: .35em;
-      text-transform: uppercase;
-      color: var(--gold-light);
-      margin-bottom: 28px;
-      animation: fadeUp .8s ease both;
-      position: relative;
-    }
-    .hero-badge::before, .hero-badge::after {
-      content: '✦';
-      position: absolute; top: 50%; transform: translateY(-50%);
-      color: var(--gold); font-size: .6rem;
-    }
-    .hero-badge::before { left: 8px; }
-    .hero-badge::after { right: 8px; }
-
-    h1 {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: clamp(3.2rem, 8vw, 7.5rem);
-      font-weight: 700;
-      line-height: 1.05;
-      text-align: center;
-      background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 40%, var(--gold-light) 70%, var(--gold-pale) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      animation: fadeUp 1s .1s ease both;
-      position: relative;
-    }
-
-    .hero-sub {
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-size: clamp(1.1rem, 2.5vw, 1.6rem);
-      color: var(--gold-pale);
-      opacity: .8;
-      margin-top: 16px;
-      letter-spacing: .08em;
-      text-align: center;
-      animation: fadeUp 1s .2s ease both;
-    }
-
-    .hero-desc {
-      max-width: 480px;
-      text-align: center;
-      font-size: 1.1rem;
-      line-height: 1.75;
-      color: #D9C9A8;
-      margin-top: 28px;
-      animation: fadeUp 1s .3s ease both;
-    }
-
-    .hero-cta-row {
-      display: flex; gap: 16px; flex-wrap: wrap; justify-content: center;
-      margin-top: 40px;
-      animation: fadeUp 1s .4s ease both;
-    }
-
-    .btn-primary {
-      background: linear-gradient(135deg, var(--gold) 0%, #A0711A 100%);
-      color: var(--dark);
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: .72rem;
-      letter-spacing: .2em;
-      text-decoration: none;
-      padding: 14px 36px;
-      display: inline-block;
-      position: relative;
-      transition: transform .2s, box-shadow .2s;
-      box-shadow: 0 4px 32px rgba(201,146,42,.35);
-    }
+    .ornament-line::before, .ornament-line::after { content: ''; flex: 1; max-width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold-light), transparent); }
+    .hero-badge { border: 1px solid var(--gold); padding: 6px 24px; font-size: .78rem; letter-spacing: .35em; text-transform: uppercase; color: var(--gold-light); margin-bottom: 28px; animation: fadeUp .8s ease both; position: relative; }
+    .hero-badge::before, .hero-badge::after { content: '✦'; position: absolute; top: 50%; transform: translateY(-50%); color: var(--gold); font-size: .6rem; }
+    .hero-badge::before { left: 8px; } .hero-badge::after { right: 8px; }
+    h1 { font-family: 'Cinzel Decorative', cursive; font-size: clamp(3.2rem, 8vw, 7.5rem); font-weight: 700; line-height: 1.05; text-align: center; background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 40%, var(--gold-light) 70%, var(--gold-pale) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: fadeUp 1s .1s ease both; position: relative; }
+    .hero-sub { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: clamp(1.1rem, 2.5vw, 1.6rem); color: var(--gold-pale); opacity: .8; margin-top: 16px; letter-spacing: .08em; text-align: center; animation: fadeUp 1s .2s ease both; }
+    .hero-desc { max-width: 480px; text-align: center; font-size: 1.1rem; line-height: 1.75; color: #D9C9A8; margin-top: 28px; animation: fadeUp 1s .3s ease both; }
+    .hero-cta-row { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-top: 40px; animation: fadeUp 1s .4s ease both; }
+    .btn-primary { background: linear-gradient(135deg, var(--gold) 0%, #A0711A 100%); color: var(--dark); font-family: 'Cinzel Decorative', cursive; font-size: .72rem; letter-spacing: .2em; text-decoration: none; padding: 14px 36px; display: inline-block; position: relative; transition: transform .2s, box-shadow .2s; box-shadow: 0 4px 32px rgba(201,146,42,.35); }
     .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 40px rgba(201,146,42,.55); }
-
-    .btn-ghost {
-      border: 1px solid var(--gold);
-      color: var(--gold-light);
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: .72rem;
-      letter-spacing: .2em;
-      text-decoration: none;
-      padding: 14px 36px;
-      transition: background .2s, color .2s;
-    }
+    .btn-ghost { border: 1px solid var(--gold); color: var(--gold-light); font-family: 'Cinzel Decorative', cursive; font-size: .72rem; letter-spacing: .2em; text-decoration: none; padding: 14px 36px; transition: background .2s, color .2s; }
     .btn-ghost:hover { background: rgba(201,146,42,.12); }
-
-    .hero-location {
-      margin-top: 56px;
-      display: flex; align-items: center; gap: 8px;
-      color: var(--gold-pale); opacity: .6;
-      font-size: .9rem; letter-spacing: .12em;
-      animation: fadeUp 1s .5s ease both;
-    }
+    .hero-location { margin-top: 56px; display: flex; align-items: center; gap: 8px; color: var(--gold-pale); opacity: .6; font-size: .9rem; letter-spacing: .12em; animation: fadeUp 1s .5s ease both; }
     .hero-location svg { width: 14px; fill: var(--gold); flex-shrink: 0; }
-
-    /* scroll indicator */
-    .scroll-hint {
-      position: absolute; bottom: 32px;
-      left: 50%; transform: translateX(-50%);
-      display: flex; flex-direction: column; align-items: center; gap: 8px;
-      opacity: .4; animation: pulse 2.5s infinite;
-    }
+    .scroll-hint { position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; opacity: .4; animation: pulse 2.5s infinite; }
     .scroll-hint span { font-size: .65rem; letter-spacing: .3em; text-transform: uppercase; }
     .scroll-hint svg { width: 20px; }
-
-    /* ══════════════════════════════════════
-       SECTION SHARED
-    ══════════════════════════════════════ */
     section { padding: 100px 24px; }
-
-    .section-label {
-      font-size: .7rem;
-      letter-spacing: .45em;
-      text-transform: uppercase;
-      color: var(--gold);
-      text-align: center;
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: clamp(1.6rem, 4vw, 3rem);
-      text-align: center;
-      background: linear-gradient(135deg, var(--gold-pale), var(--gold));
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-      background-clip: text;
-      margin-bottom: 16px;
-    }
-
-    .divider {
-      display: flex; align-items: center; justify-content: center; gap: 12px;
-      margin: 20px auto 56px;
-    }
-    .divider::before, .divider::after {
-      content: '';
-      width: 80px; height: 1px;
-      background: linear-gradient(90deg, transparent, var(--gold));
-    }
+    .section-label { font-size: .7rem; letter-spacing: .45em; text-transform: uppercase; color: var(--gold); text-align: center; margin-bottom: 16px; }
+    .section-title { font-family: 'Cinzel Decorative', cursive; font-size: clamp(1.6rem, 4vw, 3rem); text-align: center; background: linear-gradient(135deg, var(--gold-pale), var(--gold)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 16px; }
+    .divider { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 20px auto 56px; }
+    .divider::before, .divider::after { content: ''; width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold)); }
     .divider::after { background: linear-gradient(90deg, var(--gold), transparent); }
     .divider-gem { color: var(--gold); font-size: .8rem; }
-
-    /* ══════════════════════════════════════
-       ABOUT
-    ══════════════════════════════════════ */
-    #about {
-      background:
-        radial-gradient(ellipse 70% 50% at 0% 50%, #3D1C1022 0%, transparent 70%),
-        linear-gradient(180deg, var(--dark) 0%, #200D05 100%);
-    }
-
-    .about-inner {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center;
-    }
+    #about { background: radial-gradient(ellipse 70% 50% at 0% 50%, #3D1C1022 0%, transparent 70%), linear-gradient(180deg, var(--dark) 0%, #200D05 100%); }
+    .about-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
     @media (max-width: 700px) { .about-inner { grid-template-columns: 1fr; gap: 40px; } }
-
-    .about-text p {
-      font-size: 1.15rem; line-height: 1.85; color: #C9BAA0;
-      margin-bottom: 20px;
-    }
+    .about-text p { font-size: 1.15rem; line-height: 1.85; color: #C9BAA0; margin-bottom: 20px; }
     .about-text p strong { color: var(--gold-light); font-style: italic; }
-
-    .about-stats {
-      display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
-    }
-    .stat-card {
-      border: 1px solid rgba(201,146,42,.25);
-      padding: 50px 30 px;
-      text-align: center;
-      background: rgba(201,146,42,.04);
-      position: relative;
-      overflow: hidden;
-    }
-    .stat-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 2px;
-      background: linear-gradient(90deg, transparent, var(--gold), transparent);
-    }
-    .stat-num {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: 2.2rem;
-      color: var(--gold);
-      display: block;
-    }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .stat-card { border: 1px solid rgba(201,146,42,.25); padding: 50px 30px; text-align: center; background: rgba(201,146,42,.04); position: relative; overflow: hidden; }
+    .stat-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); }
+    .stat-num { font-family: 'Cinzel Decorative', cursive; font-size: 2.2rem; color: var(--gold); display: block; }
     .stat-label { font-size: .8rem; letter-spacing: .2em; color: var(--gold-pale); opacity: .7; margin-top: 6px; display: block; text-transform: uppercase; }
-
-    /* ══════════════════════════════════════
-       PRODUCTS
-    ══════════════════════════════════════ */
-    #products {
-      background: linear-gradient(180deg, #200D05 0%, #2B1006 50%, #200D05 100%);
-    }
-
-    .products-grid {
-      max-width: 1100px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2px;
-    }
-
-    .product-card {
-      position: relative; overflow: hidden;
-      aspect-ratio: 3/4;
-      background: var(--brown);
-      cursor: pointer;
-    }
-    .product-card::before {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(180deg, transparent 40%, rgba(26,10,5,.92) 100%);
-      z-index: 1;
-    }
-    .product-card-bg {
-      position: absolute; inset: 0;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 6rem;
-      background: linear-gradient(135deg, #3D1C10, #5C2A0A);
-      transition: transform .5s ease;
-    }
-    .product-card-bg img {
-      width: 100%; height: 100%;
-      object-fit: cover;
-      display: block;
-    }
+    #products { background: linear-gradient(180deg, #200D05 0%, #2B1006 50%, #200D05 100%); }
+    .products-grid { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 2px; }
+    .product-card { position: relative; overflow: hidden; aspect-ratio: 3/4; background: var(--brown); cursor: pointer; }
+    .product-card::before { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 40%, rgba(26,10,5,.92) 100%); z-index: 1; }
+    .product-card-bg { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 6rem; background: linear-gradient(135deg, #3D1C10, #5C2A0A); transition: transform .5s ease; }
+    .product-card-bg img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .product-card:hover .product-card-bg { transform: scale(1.08); }
-
-    .product-card-content {
-      position: absolute; bottom: 0; left: 0; right: 0;
-      padding: 28px 24px;
-      z-index: 2;
-    }
-    .product-card-name {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: 1.05rem;
-      color: var(--gold-pale);
-      margin-bottom: 6px;
-    }
-    .product-card-desc {
-      font-size: .92rem;
-      font-style: italic;
-      color: #C9BAA0;
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity .3s, transform .3s;
-    }
+    .product-card-content { position: absolute; bottom: 0; left: 0; right: 0; padding: 28px 24px; z-index: 2; }
+    .product-card-name { font-family: 'Cinzel Decorative', cursive; font-size: 1.05rem; color: var(--gold-pale); margin-bottom: 6px; }
+    .product-card-desc { font-size: .92rem; font-style: italic; color: #C9BAA0; opacity: 0; transform: translateY(8px); transition: opacity .3s, transform .3s; }
     .product-card:hover .product-card-desc { opacity: 1; transform: translateY(0); }
-
-    .product-card-tag {
-      position: absolute; top: 20px; right: 20px;
-      background: var(--crimson);
+    .product-card-tag { position: absolute; top: 20px; right: 20px; background: var(--crimson); color: var(--gold-pale); font-size: .6rem; letter-spacing: .2em; text-transform: uppercase; padding: 5px 12px; z-index: 2; }
+    /* Multi-image badge */
+    .product-card[data-gallery] .product-card-bg::after {
+  content: '📷 View Gallery';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      background: linear-gradient(0deg, rgba(26,10,5,.85) 0%, transparent 100%);
       color: var(--gold-pale);
-      font-size: .6rem; letter-spacing: .2em; text-transform: uppercase;
-      padding: 5px 12px;
-      z-index: 2;
-    }
-
-    /* ══════════════════════════════════════
-       GALLERY STRIP
-    ══════════════════════════════════════ */
-    #gallery {
-      padding: 80px 0;
-      overflow: hidden;
-      background: #160804;
-    }
-
-    .gallery-track {
-      display: flex; gap: 16px;
-      animation: marquee 30s linear infinite;
-      width: max-content;
-    }
-    .gallery-item {
-      width: 280px; height: 200px;
-      background: var(--brown);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 4rem;
-      flex-shrink: 0;
-      border: 1px solid rgba(201,146,42,.1);
-      position: relative;
-      overflow: hidden;
-    }
-    .gallery-item::after {
-      content: '';
-      position: absolute; inset: 0;
-      background: linear-gradient(135deg, rgba(201,146,42,.08), transparent);
-    }
-
-    /* ══════════════════════════════════════
-       WHY US
-    ══════════════════════════════════════ */
-    #why {
-      background:
-        radial-gradient(ellipse 60% 60% at 100% 0%, #8B1A2B22 0%, transparent 60%),
-        linear-gradient(180deg, #200D05 0%, var(--dark) 100%);
-    }
-
-    .why-grid {
-      max-width: 900px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 32px;
-    }
-
-    .why-card {
-      text-align: center; padding: 40px 24px;
-      border: 1px solid rgba(201,146,42,.15);
-      background: rgba(255,255,255,.015);
-      position: relative;
-      transition: border-color .3s, background .3s;
-    }
-    .why-card:hover {
-      border-color: rgba(201,146,42,.5);
-      background: rgba(201,146,42,.05);
-    }
-    .why-icon { font-size: 2.4rem; margin-bottom: 20px; display: block; }
-    .why-title {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: .85rem;
-      color: var(--gold-light);
-      margin-bottom: 12px;
-      letter-spacing: .05em;
-    }
-    .why-desc { font-size: .95rem; line-height: 1.7; color: #B0A090; }
-
-    /* ══════════════════════════════════════
-       TESTIMONIALS
-    ══════════════════════════════════════ */
-    #testimonials {
-      background: linear-gradient(180deg, var(--dark) 0%, #1A0A05 100%);
-      text-align: center;
-    }
-
-    .testimonials-grid {
-      max-width: 1000px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 24px;
-    }
-
-    .testimonial {
-      padding: 36px 28px;
-      border: 1px solid rgba(201,146,42,.18);
-      background: rgba(201,146,42,.03);
-      text-align: left;
-      position: relative;
-    }
-    .testimonial::before {
-      content: '"';
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: 5rem;
-      color: var(--gold);
-      opacity: .15;
-      position: absolute; top: 8px; left: 20px;
-      line-height: 1;
-    }
-    .testimonial-text {
-      font-style: italic;
-      font-size: 1rem;
-      line-height: 1.75;
-      color: #C9BAA0;
-      margin-bottom: 20px;
-      position: relative;
-    }
-    .testimonial-author {
-      font-size: .78rem;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      color: var(--gold);
-    }
-    .testimonial-stars { color: var(--gold); font-size: .9rem; margin-bottom: 12px; }
-
-    /* ══════════════════════════════════════
-       VISIT / CTA
-    ══════════════════════════════════════ */
-    #visit {
-      background:
-        radial-gradient(ellipse 80% 80% at 50% 100%, #5C2A0A55, transparent 70%),
-        linear-gradient(180deg, #1A0A05 0%, #0D0502 100%);
-      text-align: center;
-    }
-
-    .contact-grid {
-      max-width: 800px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap: 32px; margin-bottom: 56px;
-    }
-
-    .contact-card {
-      padding: 36px 24px;
-      border: 1px solid rgba(201,146,42,.2);
-      background: rgba(201,146,42,.04);
-    }
-    .contact-card-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
-    .contact-card-title {
-      font-family: 'Cinzel Decorative', cursive;
+      font-family: 'Cormorant Garamond', serif;
       font-size: .75rem;
-      letter-spacing: .12em;
-      color: var(--gold);
-      margin-bottom: 10px;
+      letter-spacing: .18em;
+      text-align: center;
+      padding: 18px 8px 8px;
+      opacity: 0;
+      transition: opacity .3s;
+      z-index: 3;
     }
+    .product-card[data-gallery]:hover .product-card-bg::after { opacity: 1; }
+    #gallery { padding: 80px 0; overflow: hidden; background: #160804; }
+    .gallery-track { display: flex; gap: 16px; animation: marquee 30s linear infinite; width: max-content; }
+    .gallery-item { width: 280px; height: 200px; background: var(--brown); display: flex; align-items: center; justify-content: center; font-size: 4rem; flex-shrink: 0; border: 1px solid rgba(201,146,42,.1); position: relative; overflow: hidden; }
+    .gallery-item::after { content: ''; position: absolute; inset: 0; background: linear-gradient(135deg, rgba(201,146,42,.08), transparent); }
+    #why { background: radial-gradient(ellipse 60% 60% at 100% 0%, #8B1A2B22 0%, transparent 60%), linear-gradient(180deg, #200D05 0%, var(--dark) 100%); }
+    .why-grid { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 32px; }
+    .why-card { text-align: center; padding: 40px 24px; border: 1px solid rgba(201,146,42,.15); background: rgba(255,255,255,.015); position: relative; transition: border-color .3s, background .3s; }
+    .why-card:hover { border-color: rgba(201,146,42,.5); background: rgba(201,146,42,.05); }
+    .why-icon { font-size: 2.4rem; margin-bottom: 20px; display: block; }
+    .why-title { font-family: 'Cinzel Decorative', cursive; font-size: .85rem; color: var(--gold-light); margin-bottom: 12px; letter-spacing: .05em; }
+    .why-desc { font-size: .95rem; line-height: 1.7; color: #B0A090; }
+    #testimonials { background: linear-gradient(180deg, var(--dark) 0%, #1A0A05 100%); text-align: center; }
+    .testimonials-grid { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
+    .testimonial { padding: 36px 28px; border: 1px solid rgba(201,146,42,.18); background: rgba(201,146,42,.03); text-align: left; position: relative; }
+    .testimonial::before { content: '"'; font-family: 'Cinzel Decorative', cursive; font-size: 5rem; color: var(--gold); opacity: .15; position: absolute; top: 8px; left: 20px; line-height: 1; }
+    .testimonial-text { font-style: italic; font-size: 1rem; line-height: 1.75; color: #C9BAA0; margin-bottom: 20px; position: relative; }
+    .testimonial-author { font-size: .78rem; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
+    .testimonial-stars { color: var(--gold); font-size: .9rem; margin-bottom: 12px; }
+    #visit { background: radial-gradient(ellipse 80% 80% at 50% 100%, #5C2A0A55, transparent 70%), linear-gradient(180deg, #1A0A05 0%, #0D0502 100%); text-align: center; }
+    .contact-grid { max-width: 800px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; margin-bottom: 56px; }
+    .contact-card { padding: 36px 24px; border: 1px solid rgba(201,146,42,.2); background: rgba(201,146,42,.04); }
+    .contact-card-icon { font-size: 2rem; margin-bottom: 14px; display: block; }
+    .contact-card-title { font-family: 'Cinzel Decorative', cursive; font-size: .75rem; letter-spacing: .12em; color: var(--gold); margin-bottom: 10px; }
     .contact-card-value { font-size: 1rem; line-height: 1.6; color: #C9BAA0; }
     .contact-card a { color: var(--gold-light); text-decoration: none; }
     .contact-card a:hover { text-decoration: underline; }
-
-    /* ══════════════════════════════════════
-       FOOTER
-    ══════════════════════════════════════ */
-    footer {
-      padding: 40px 24px;
-      border-top: 1px solid rgba(201,146,42,.12);
-      display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px;
-      max-width: 1100px; margin: 0 auto;
-    }
-
-    .footer-brand {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: 1.1rem;
-      color: var(--gold);
-    }
-
+    footer { padding: 40px 24px; border-top: 1px solid rgba(201,146,42,.12); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; max-width: 1100px; margin: 0 auto; }
+    .footer-brand { font-family: 'Cinzel Decorative', cursive; font-size: 1.1rem; color: var(--gold); }
     .footer-copy { font-size: .82rem; color: #8A7A60; }
-
-    .footer-social a {
-      color: var(--gold-pale); opacity: .5;
-      text-decoration: none; font-size: .8rem; letter-spacing: .15em;
-      transition: opacity .2s;
-    }
+    .footer-social a { color: var(--gold-pale); opacity: .5; text-decoration: none; font-size: .8rem; letter-spacing: .15em; transition: opacity .2s; }
     .footer-social a:hover { opacity: 1; }
-
-    /* ══════════════════════════════════════
-       FLOATING SOCIAL BUTTONS
-    ══════════════════════════════════════ */
-    .social-float {
-      position: fixed; bottom: 28px; right: 28px;
-      display: flex; flex-direction: column; gap: 14px;
-      z-index: 1000;
-    }
-
-    .social-float-btn {
-      width: 54px; height: 54px;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      text-decoration: none;
-      transition: transform .25s, box-shadow .25s;
-      position: relative;
-    }
+    .social-float { position: fixed; bottom: 28px; right: 28px; display: flex; flex-direction: column; gap: 14px; z-index: 1000; }
+    .social-float-btn { width: 54px; height: 54px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; transition: transform .25s, box-shadow .25s; position: relative; }
     .social-float-btn:hover { transform: scale(1.12); }
-
-    /* Gold ring around both buttons to match theme */
-    .social-float-btn::before {
-      content: '';
-      position: absolute; inset: -3px;
-      border-radius: 50%;
-      border: 1px solid rgba(201,146,42,.5);
-      transition: border-color .25s;
-    }
+    .social-float-btn::before { content: ''; position: absolute; inset: -3px; border-radius: 50%; border: 1px solid rgba(201,146,42,.5); transition: border-color .25s; }
     .social-float-btn:hover::before { border-color: var(--gold); }
-
-    .social-float-btn.whatsapp {
-      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-      box-shadow: 0 4px 20px rgba(0,0,0,.5);
-    }
+    .social-float-btn.whatsapp { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); box-shadow: 0 4px 20px rgba(0,0,0,.5); }
     .social-float-btn.whatsapp svg { fill: #25D366; width: 26px; }
     .social-float-btn.whatsapp:hover { box-shadow: 0 6px 28px rgba(37,211,102,.35); }
-
-    .social-float-btn.instagram {
-      background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
-      box-shadow: 0 4px 20px rgba(0,0,0,.5);
-    }
+    .social-float-btn.instagram { background: linear-gradient(135deg, #1a1a1a, #2a2a2a); box-shadow: 0 4px 20px rgba(0,0,0,.5); }
     .social-float-btn.instagram svg { width: 26px; }
     .social-float-btn.instagram:hover { box-shadow: 0 6px 28px rgba(201,146,42,.35); }
-
-    /* ══════════════════════════════════════
-       ANIMATIONS
-    ══════════════════════════════════════ */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: .35; } 50% { opacity: .65; }
-    }
-    @keyframes marquee {
-      0%   { transform: translateX(0); }
-      100% { transform: translateX(-50%); }
-    }
-
-    /* Scroll-reveal utility */
-    .reveal {
-      opacity: 0; transform: translateY(30px);
-      transition: opacity .7s ease, transform .7s ease;
-    }
-    .reveal.visible {
-      opacity: 1; transform: translateY(0);
-    }
-
-    /* ══════════════════════════════════════
-       MOBILE ENHANCEMENTS
-    ══════════════════════════════════════ */
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+    @keyframes pulse { 0%, 100% { opacity: .35; } 50% { opacity: .65; } }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity .7s ease, transform .7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
     @media (max-width: 640px) {
-
-      /* ── Global sections ── */
       section { padding: 64px 18px; }
-
-      /* ── Hero ── */
       #hero { min-height: 100svh; padding: 40px 20px 80px; }
       h1 { font-size: clamp(2.6rem, 15vw, 4rem); line-height: 1.05; }
       .hero-sub { font-size: 1rem; letter-spacing: .05em; }
@@ -669,180 +159,122 @@
       .btn-primary, .btn-ghost { text-align: center; padding: 14px 24px; font-size: .68rem; }
       .hero-location { font-size: .8rem; margin-top: 36px; }
       .scroll-hint { display: none; }
-
-      /* ── Section titles ── */
       .section-title { font-size: clamp(1.3rem, 6vw, 1.8rem); }
       .divider { margin: 16px auto 36px; }
       .divider::before, .divider::after { width: 48px; }
-
-      /* ── About ── */
       .about-inner { gap: 32px; }
       .about-text p { font-size: 1rem; line-height: 1.75; }
       .about-stats { gap: 12px; }
       .stat-card { padding: 20px 12px; }
       .stat-num { font-size: 1.7rem; }
       .stat-label { font-size: .7rem; }
-
-      /* ── Products — 2 cols, shorter cards ── */
-      .products-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 2px;
-      }
+      .products-grid { grid-template-columns: repeat(2, 1fr); gap: 2px; }
       .product-card { aspect-ratio: 2/3; }
       .product-card-name { font-size: .78rem; }
       .product-card-content { padding: 16px 12px; }
       .product-card-tag { font-size: .52rem; padding: 4px 8px; top: 10px; right: 10px; }
-
-      /* ── Gallery strip — smaller items ── */
       .gallery-item { width: 160px; height: 120px; }
       #gallery { padding: 40px 0; }
-
-      /* ── Why us ── */
       .why-grid { grid-template-columns: 1fr; gap: 16px; }
-      .why-card {
-        padding: 24px 20px;
-        display: grid;
-        grid-template-columns: 80px 1fr;
-        gap: 0 16px;
-        text-align: left;
-        align-items: center;
-      }
-      .why-card img {
-        width: 80px !important;
-        height: 80px !important;
-        object-fit: cover;
-        margin-bottom: 0 !important;
-        border-radius: 4px;
-        grid-row: 1 / 3;
-      }
+      .why-card { padding: 24px 20px; display: grid; grid-template-columns: 80px 1fr; gap: 0 16px; text-align: left; align-items: center; }
+      .why-card img { width: 80px !important; height: 80px !important; object-fit: cover; margin-bottom: 0 !important; border-radius: 4px; grid-row: 1 / 3; }
       .why-title { font-size: .78rem; margin-bottom: 6px; }
       .why-desc { font-size: .88rem; }
-
-      /* ── Testimonials ── */
       .testimonials-grid { grid-template-columns: 1fr; gap: 14px; }
       .testimonial { padding: 24px 18px; }
-
-      /* ── Visitor photos — tighter grid, SMALLER images ── */
-      .visitor-grid {
-        columns: 2 140px;
-        column-gap: 8px;
-      }
+      .visitor-grid { columns: 2 140px; column-gap: 8px; }
       .visitor-photo { margin-bottom: 8px; border-radius: 2px; }
       .visitor-photo img { height: 140px !important; }
       .visitor-tag { font-size: .52rem; padding: 3px 7px; top: 7px; left: 7px; }
       .visitor-caption { font-size: .72rem; }
       .visitor-intro { font-size: .95rem; margin-bottom: 32px; }
       .visitor-share-cta { margin-top: 32px; }
-
-      /* ── Contact / Visit ── */
       .contact-grid { grid-template-columns: 1fr; gap: 16px; margin-bottom: 36px; }
       .contact-card { padding: 24px 18px; }
       .contact-card img { height: 90px !important; margin-bottom: 12px; }
-
-      /* ── Footer ── */
-      footer {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 10px;
-        padding: 28px 18px;
-      }
+      footer { flex-direction: column; align-items: center; text-align: center; gap: 10px; padding: 28px 18px; }
       .footer-social { justify-content: center; }
-
-      /* ── Floating buttons — smaller, tighter on mobile ── */
       .social-float { bottom: 18px; right: 16px; gap: 10px; }
       .social-float-btn { width: 46px; height: 46px; }
       .social-float-btn svg { width: 22px !important; }
-
-      /* ── Navbar mobile ── */
       .site-nav { padding: 12px 18px; }
       .nav-logo-text { font-size: 1.1rem; }
       .lang-switcher { gap: 4px; }
       .lang-btn { font-size: .55rem; padding: 4px 8px; }
     }
   </style>
-
   <style>
-    /* ══════════════════════════════════════
-       NAVBAR / LOGO
-    ══════════════════════════════════════ */
-    .site-nav {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 1000;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 14px 40px;
-      background: linear-gradient(180deg, rgba(26,10,5,.95) 0%, rgba(26,10,5,.7) 100%);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(201,146,42,.18);
-    }
-
-    .nav-logo {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      text-decoration: none;
-    }
-
-    .nav-logo-icon {
-      width: 48px;
-      height: 48px;
-      flex-shrink: 0;
-    }
-
-    .nav-logo-text {
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: 1.25rem;
-      font-weight: 700;
-      background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 50%, var(--gold-light) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-      letter-spacing: .08em;
-      line-height: 1.1;
-    }
-
-    .nav-logo-text small {
-      display: block;
-      font-size: .5rem;
-      letter-spacing: .35em;
-      color: var(--gold-pale);
-      -webkit-text-fill-color: var(--gold-pale);
-      opacity: .7;
-      font-family: 'Cormorant Garamond', serif;
-      font-style: italic;
-      font-weight: 400;
-      margin-top: 2px;
-    }
-
-    /* ── LANGUAGE SWITCHER ── */
-    .lang-switcher {
-      display: flex;
-      gap: 6px;
-      align-items: center;
-    }
-
-    .lang-btn {
-      background: transparent;
-      border: 1px solid rgba(201,146,42,.35);
-      color: var(--gold-pale);
-      font-family: 'Cinzel Decorative', cursive;
-      font-size: .6rem;
-      letter-spacing: .15em;
-      padding: 5px 12px;
-      cursor: pointer;
-      transition: all .2s;
-      text-transform: uppercase;
-      opacity: .6;
-    }
+    .site-nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; display: flex; align-items: center; justify-content: space-between; padding: 14px 40px; background: linear-gradient(180deg, rgba(26,10,5,.95) 0%, rgba(26,10,5,.7) 100%); backdrop-filter: blur(12px); border-bottom: 1px solid rgba(201,146,42,.18); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .nav-logo-icon { width: 48px; height: 48px; flex-shrink: 0; }
+    .nav-logo-text { font-family: 'Cinzel Decorative', cursive; font-size: 1.25rem; font-weight: 700; background: linear-gradient(135deg, var(--gold-pale) 0%, var(--gold) 50%, var(--gold-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; letter-spacing: .08em; line-height: 1.1; }
+    .nav-logo-text small { display: block; font-size: .5rem; letter-spacing: .35em; color: var(--gold-pale); -webkit-text-fill-color: var(--gold-pale); opacity: .7; font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; margin-top: 2px; }
+    .lang-switcher { display: flex; gap: 6px; align-items: center; }
+    .lang-btn { background: transparent; border: 1px solid rgba(201,146,42,.35); color: var(--gold-pale); font-family: 'Cinzel Decorative', cursive; font-size: .6rem; letter-spacing: .15em; padding: 5px 12px; cursor: pointer; transition: all .2s; text-transform: uppercase; opacity: .6; }
     .lang-btn:hover { opacity: 1; border-color: var(--gold); background: rgba(201,146,42,.1); }
-    .lang-btn.active {
-      opacity: 1;
-      background: rgba(201,146,42,.18);
-      border-color: var(--gold);
-      color: var(--gold-light);
+    .lang-btn.active { opacity: 1; background: rgba(201,146,42,.18); border-color: var(--gold); color: var(--gold-light); }
+
+    /* ══════════════════════════════════════
+       LIGHTBOX
+    ══════════════════════════════════════ */
+    #lb-overlay {
+      display: none; position: fixed; inset: 0; z-index: 99999;
+      background: rgba(10,4,2,.96);
+      flex-direction: column; align-items: center; justify-content: center;
+    }
+    #lb-overlay.open { display: flex; }
+    #lb-close {
+      position: absolute; top: 20px; right: 24px;
+      background: none; border: none; color: var(--gold-pale);
+      font-size: 2rem; cursor: pointer; opacity: .7;
+      transition: opacity .2s; z-index: 2; line-height: 1;
+    }
+    #lb-close:hover { opacity: 1; }
+    #lb-counter {
+      position: absolute; top: 24px; left: 50%; transform: translateX(-50%);
+      font-family: 'Cinzel Decorative', cursive; font-size: .65rem;
+      letter-spacing: .3em; color: var(--gold); opacity: .8;
+    }
+    #lb-img-wrap {
+      width: 90vw; max-width: 860px; max-height: 78vh;
+      display: flex; align-items: center; justify-content: center; position: relative;
+    }
+    #lb-img {
+      max-width: 100%; max-height: 78vh; object-fit: contain;
+      border: 1px solid rgba(201,146,42,.2); display: block; transition: opacity .25s;
+    }
+    #lb-img.fading { opacity: 0; }
+    #lb-prev, #lb-next {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(201,146,42,.12); border: 1px solid rgba(201,146,42,.35);
+      color: var(--gold-pale); width: 48px; height: 48px; border-radius: 50%;
+      font-size: 1.3rem; cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background .2s, border-color .2s; z-index: 2;
+    }
+    #lb-prev { left: -64px; } #lb-next { right: -64px; }
+    #lb-prev:hover, #lb-next:hover { background: rgba(201,146,42,.3); border-color: var(--gold); }
+    #lb-caption {
+      margin-top: 20px; font-style: italic; font-size: .95rem;
+      color: var(--gold-pale); opacity: .7; letter-spacing: .08em;
+      text-align: center; min-height: 1.4em;
+    }
+    #lb-thumbs {
+      display: flex; gap: 8px; margin-top: 18px; flex-wrap: wrap;
+      justify-content: center; max-width: 90vw; padding: 0 16px;
+    }
+    .lb-thumb {
+      width: 52px; height: 52px; object-fit: cover;
+      border: 2px solid transparent; cursor: pointer;
+      opacity: .5; transition: opacity .2s, border-color .2s; flex-shrink: 0;
+    }
+    .lb-thumb.active { border-color: var(--gold); opacity: 1; }
+    .lb-thumb:hover { opacity: .85; }
+    .product-card, .visitor-photo { cursor: zoom-in; }
+    @media (max-width: 640px) {
+      #lb-prev { left: 4px; } #lb-next { right: 4px; }
+      #lb-prev, #lb-next { width: 38px; height: 38px; font-size: 1rem; }
+      #lb-img-wrap { width: 95vw; }
     }
 
     /* push hero content below navbar */
@@ -883,7 +315,6 @@
       <small>Turkish Confections · Istanbul</small>
     </div>
   </a>
-
   <div class="lang-switcher">
     <button class="lang-btn active" onclick="setLang('en')">EN</button>
     <button class="lang-btn" onclick="setLang('fr')">FR</button>
@@ -899,13 +330,10 @@
   <div class="ornament-line"><span>✦</span></div>
   <h1>King<br>Delight</h1>
   <p class="hero-sub" data-i18n="hero_sub">The Finest Turkish Confections</p>
-
-  <!-- LOCATION — above description -->
   <div class="hero-location" style="margin-top:28px; margin-bottom:0; opacity:.9; font-size:1rem;">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
     <span data-i18n="hero_location">Next to the Blue Mosque (B Door), Istanbul</span>
   </div>
-
   <p class="hero-desc" data-i18n="hero_desc">Handcrafted lokum, premium nuts, exotic spices and authentic sweets — steps away from the Blue Mosque.</p>
   <div class="hero-cta-row">
     <a href="#products" class="btn-primary" data-i18n="cta_explore">Explore Delights</a>
@@ -922,7 +350,6 @@
   <p class="section-label reveal" data-i18n="about_label">Our Story</p>
   <h2 class="section-title reveal" data-i18n="about_title">A Royal Heritage<br>of Sweetness</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
-
   <div class="about-inner">
     <div class="about-text reveal">
       <p data-i18n="about_p1">Nestled in the heart of historic Sultanahmet, <strong>King Delight</strong> brings the timeless tradition of Ottoman confectionery to the world's most curious travellers.</p>
@@ -930,22 +357,10 @@
       <p data-i18n="about_p3">Whether you're shopping for a gift or indulging yourself, our shop is an experience in itself — fragrant, colourful, and warmly welcoming.</p>
     </div>
     <div class="about-stats reveal">
-      <div class="stat-card">
-        <span class="stat-num">50+</span>
-        <span class="stat-label" data-i18n="stat_varieties">Varieties</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">100%</span>
-        <span class="stat-label" data-i18n="stat_authentic">Authentic</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">∞</span>
-        <span class="stat-label" data-i18n="stat_flavour">Flavour</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-num">⭐⭐⭐⭐⭐</span>
-        <span class="stat-label" data-i18n="stat_rated">Rated</span>
-      </div>
+      <div class="stat-card"><span class="stat-num">50+</span><span class="stat-label" data-i18n="stat_varieties">Varieties</span></div>
+      <div class="stat-card"><span class="stat-num">100%</span><span class="stat-label" data-i18n="stat_authentic">Authentic</span></div>
+      <div class="stat-card"><span class="stat-num">∞</span><span class="stat-label" data-i18n="stat_flavour">Flavour</span></div>
+      <div class="stat-card"><span class="stat-num">⭐⭐⭐⭐⭐</span><span class="stat-label" data-i18n="stat_rated">Rated</span></div>
     </div>
   </div>
 </section>
@@ -955,7 +370,6 @@
   <p class="section-label reveal" data-i18n="products_label">What We Offer</p>
   <h2 class="section-title reveal" data-i18n="products_title">Our Delights</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
-
   <div class="products-grid reveal">
     <div class="product-card">
       <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipPcUL5RKBhGhMTiPEYcedSlwfg9Erqqe0l8CNoi=s680-w680-h510-rw" alt="Turkish Lokum" loading="lazy"/></div>
@@ -965,66 +379,155 @@
         <div class="product-card-desc" data-i18n="prod_lokum_desc">Rose, pistachio, pomegranate & dozens more. The original Ottoman delight.</div>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipNwLGMp5Np6GWGgKEADRqjqiJ0OdgOxfWsNpfZH=s680-w680-h510-rw" alt="Ottoman Perfumes" loading="lazy"/></div>
-      <div class="product-card-tag" data-i18n="tag_new">New</div>
-      <div class="product-card-content">
-        <div class="product-card-name" data-i18n="prod_perfume_name">Ottoman Perfumes</div>
-        <div class="product-card-desc" data-i18n="prod_perfume_desc">Rare oud, rose water & amber — timeless oriental fragrances bottled in Istanbul.</div>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1600857544200-b2f666a9a2ec?w=600&q=80" alt="Artisan Savon" loading="lazy"/></div>
+    <div class="product-card" data-gallery="perfume">
+  <div class="product-card-bg"><img crossorigin="anonymous" src="https://i.imgur.com/60RXLvi.jpeg" alt="Ottoman Perfumes" loading="lazy"/></div>
+  <div class="product-card-tag" data-i18n="tag_new">New</div>
+  <div class="product-card-content">
+    <div class="product-card-name" data-i18n="prod_perfume_name">Ottoman Perfumes</div>
+    <div class="product-card-desc" data-i18n="prod_perfume_desc">Rare oud, rose water & amber — timeless oriental fragrances bottled in Istanbul.</div>
+  </div>
+  <div class="savon-extra-imgs" style="display:none">
+    <img src="https://i.imgur.com/60RXLvi.jpeg" alt="Ottoman Perfume 1"/>
+    <img src="https://i.imgur.com/bsVXPsH.jpeg" alt="Ottoman Perfume 2"/>
+    <img src="https://i.imgur.com/zFcdopx.jpeg" alt="Ottoman Perfume 3"/>
+    <img src="https://i.imgur.com/0S3mQt8.jpeg" alt="Ottoman Perfume 4"/>
+    <img src="https://i.imgur.com/IpsVhWH.jpeg" alt="Ottoman Perfume 5"/>
+    <img src="https://i.imgur.com/JZ2wpcn.jpeg" alt="Ottoman Perfume 6"/>
+  </div>
+</div>
+
+    <!-- ═══ ARTISAN SAVON — 9 custom photos ═══ -->
+    <div class="product-card" data-gallery="savon">
+      <div class="product-card-bg"><img crossorigin="anonymous" src="https://i.imgur.com/zPrKg5h.jpeg" alt="Artisan Savon" loading="lazy"/></div>
       <div class="product-card-content">
         <div class="product-card-name" data-i18n="prod_savon_name">Artisan Savon</div>
         <div class="product-card-desc" data-i18n="prod_savon_desc">Handcrafted Turkish soaps with olive oil, rose & laurel — pure, natural, luxurious.</div>
       </div>
-    </div>
-    <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=600&q=80" alt="Baklava" loading="lazy"/></div>
-      <div class="product-card-tag" data-i18n="tag_popular">Popular</div>
-      <div class="product-card-content">
-        <div class="product-card-name" data-i18n="prod_baklava_name">Baklava</div>
-        <div class="product-card-desc" data-i18n="prod_baklava_desc">Layers of golden pastry, honey and nuts. Crispy, flaky perfection.</div>
+      <!-- Hidden gallery data — all 9 photos -->
+      <div class="savon-extra-imgs" style="display:none">
+        <img src="https://i.imgur.com/zPrKg5h.jpeg" alt="Artisan Savon 1"/>
+        <img src="https://i.imgur.com/O0rWyKr.jpeg" alt="Artisan Savon 2"/>
+        <img src="https://i.imgur.com/PhvOSDj.jpeg" alt="Artisan Savon 3"/>
+        <img src="https://i.imgur.com/Ldjv4Ow.jpeg" alt="Artisan Savon 4"/>
+        <img src="https://i.imgur.com/MgQeHyI.jpeg" alt="Artisan Savon 5"/>
+        <img src="https://i.imgur.com/YeOGDuL.jpeg" alt="Artisan Savon 6"/>
+        <img src="https://i.imgur.com/imigd5g.jpeg" alt="Artisan Savon 7"/>
+        <img src="https://i.imgur.com/Lg4hly5.jpeg" alt="Artisan Savon 8"/>
+        <img src="https://i.imgur.com/pXAq96l.jpeg" alt="Artisan Savon 9"/>
       </div>
     </div>
-    <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipNvLem1NZBBxgQasWEvJqWLJpgZwycecLEwi8Rn=s680-w680-h510-rw" alt="Exotic Spices" loading="lazy"/></div>
-      <div class="product-card-content">
-        <div class="product-card-name" data-i18n="prod_spices_name">Exotic Spices</div>
-        <div class="product-card-desc" data-i18n="prod_spices_desc">Saffron, sumac, za'atar and signature spice blends from the Grand Bazaar.</div>
-      </div>
-    </div>
-    <div class="product-card">
-      <div class="product-card-bg"><img crossorigin="anonymous" src="https://lh3.googleusercontent.com/p/AF1QipMY_CM976EybAj7kNA1EhyLEkeKPrqv3x-A3SUp=s680-w680-h510-rw" alt="Turkish Tea" loading="lazy"/></div>
-      <div class="product-card-content">
-        <div class="product-card-name" data-i18n="prod_tea_name">Turkish Tea</div>
-        <div class="product-card-desc" data-i18n="prod_tea_desc">Premium çay herbal infusions to take home.</div>
-      </div>
-    </div>
-    
-    </div>
+
+  <div class="product-card" data-gallery="honey">
+  <div class="product-card-bg">
+    <img crossorigin="anonymous" src="https://i.imgur.com/UIhPkhF.png" alt="Pure Turkish Honey" loading="lazy"/>
   </div>
+  <div class="product-card-tag" data-i18n="tag_signature">Signature</div>
+  <div class="product-card-content">
+    <div class="product-card-name" data-i18n="prod_honey_name">Pure Turkish Honey</div>
+    <div class="product-card-desc" data-i18n="prod_honey_desc">Wildflower, pine, and honeycomb — liquid gold from the Anatolian mountains.</div>
+  </div>
+  <div class="savon-extra-imgs" style="display:none">
+    <img src="https://i.imgur.com/UIhPkhF.png" alt="Honey 1"/>
+    <img src="https://i.imgur.com/u3iukHv.png" alt="Honey 2"/>
+    <img src="https://i.imgur.com/wezde2i.png" alt="Honey 3"/>
+    <img src="https://i.imgur.com/405IHZN.png" alt="Honey 4"/>
+    <img src="https://i.imgur.com/jTDSHHc.png" alt="Honey 5"/>
+    
+  </div>
+</div>
+    <div class="product-card" data-gallery="spices">
+  <div class="product-card-bg">
+    <img crossorigin="anonymous" src="https://i.imgur.com/jpgfgKB.jpeg" alt="Exotic Spices Istanbul" loading="lazy"/>
+  </div>
+  <div class="product-card-tag" data-i18n="tag_signature">Signature</div>
+  <div class="product-card-content">
+    <div class="product-card-name" data-i18n="prod_spices_name">Exotic Spices</div>
+    <div class="product-card-desc" data-i18n="prod_spices_desc">Saffron, sumac, za'atar and signature spice blends from the Grand Bazaar.</div>
+  </div>
+  <div class="savon-extra-imgs" style="display:none">
+    <img src="https://i.imgur.com/jpgfgKB.jpeg" alt="Spices 1"/>
+    <img src="https://i.imgur.com/54oO0jJ.jpeg" alt="Spices 2"/>
+    <img src="https://i.imgur.com/D2l79op.jpeg" alt="Spices 3"/>
+    <img src="https://i.imgur.com/4chhhRy.jpeg" alt="Spices 4"/>
+    <img src="https://i.imgur.com/hGU94os.jpeg" alt="Spices 5"/>
+    <img src="https://i.imgur.com/c8x5f58.jpeg" alt="Spices 6"/>
+  </div>
+</div>
+    <div class="product-card" data-gallery="tea">
+  <div class="product-card-bg"><img crossorigin="anonymous" src="https://i.imgur.com/DQQwfcA.jpeg" alt="Turkish Tea" loading="lazy"/></div>
+  <div class="product-card-content">
+    <div class="product-card-name" data-i18n="prod_tea_name">Turkish Tea</div>
+    <div class="product-card-desc" data-i18n="prod_tea_desc">Premium çay herbal infusions to take home.</div>
+  </div>
+  <div class="savon-extra-imgs" style="display:none">
+    <img src="https://i.imgur.com/DQQwfcA.jpeg" alt="Turkish Tea 1"/>
+    <img src="https://i.imgur.com/75LTW1C.jpeg" alt="Turkish Tea 2"/>
+    <img src="https://i.imgur.com/pbnASW8.jpeg" alt="Turkish Tea 3"/>
+    <img src="https://i.imgur.com/HYcCbZg.jpeg" alt="Turkish Tea 4"/>
+    <img src="https://i.imgur.com/imffMBg.jpeg" alt="Turkish Tea 5"/>
+    <img src="https://i.imgur.com/9QeaCf7.jpeg" alt="Turkish Tea 6"/>
+    <img src="https://i.imgur.com/gAc0GS7.jpeg" alt="Turkish Tea 7"/>
+    <img src="https://i.imgur.com/TmTkoJe.jpeg" alt="Turkish Tea 8"/>
+    <img src="https://i.imgur.com/1XrMr7P.jpeg" alt="Turkish Tea 9"/>
+    <img src="https://i.imgur.com/SxNakLr.jpeg" alt="Turkish Tea 10"/>
+    <img src="https://i.imgur.com/GGu8o7J.jpeg" alt="Turkish Tea 11"/>
+  </div>
+</div>
+<div class="product-card" data-gallery="cosmetics">
+  <div class="product-card-bg">
+    <img crossorigin="anonymous" src="https://i.imgur.com/cpTeCd7.jpeg" alt="Turkish Cosmetics" loading="lazy"/>
+  </div>
+  <div class="product-card-tag" data-i18n="tag_popular">Popular</div>
+  <div class="product-card-content">
+    <div class="product-card-name" data-i18n="prod_cosmetic_name">Nature's Beauty</div>
+    <div class="product-card-desc" data-i18n="prod_cosmetic_desc">Rose water, clay masks, and botanical oils — traditional Turkish beauty secrets.</div>
+  </div>
+  <div class="savon-extra-imgs" style="display:none">
+    <img src="https://i.imgur.com/cpTeCd7.jpeg" alt="Cosmetic 1"/>
+    <img src="https://i.imgur.com/GX5dQRH.jpeg" alt="Cosmetic 2"/>
+    <img src="https://i.imgur.com/cKhpNYA.jpeg" alt="Cosmetic 3"/>
+    <img src="https://i.imgur.com/hzrnnmh.jpeg" alt="Cosmetic 4"/>
+    <img src="https://i.imgur.com/XRhgtCm.jpeg" alt="Cosmetic 5"/>
+    <img src="https://i.imgur.com/lW6K7Yq.jpeg" alt="Cosmetic 6"/>
+    <img src="https://i.imgur.com/KHUdWYp.jpeg" alt="Cosmetic 7"/>
+    <img src="https://i.imgur.com/GBq508Q.jpeg" alt="Cosmetic 8"/>
+    <img src="https://i.imgur.com/C5Hf4VN.jpeg" alt="Cosmetic 9"/>
+    <img src="https://i.imgur.com/SzUoApL.jpeg" alt="Cosmetic 10"/>
+    <img src="https://i.imgur.com/X1NSVQU.jpeg" alt="Cosmetic 11"/>
+  </div>
+</div>
+  </div>
+  
 </section>
 
 <!-- ═══ GALLERY STRIP ═══ -->
 <section id="gallery" style="padding: 80px 0;">
   <div class="gallery-track">
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=400&q=70" alt="Baklava" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+        <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/lW6K7Yq.jpeg" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/imffMBg.jpeg" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/cKhpNYA.jpeg" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/54oO0jJ.jpeg" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/c8x5f58.jpeg" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/wezde2i.png" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/imigd5g.jpeg" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/O0rWyKr.jpeg" alt="Baklava" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=400&q=70" alt="Spices" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1676232731729-c06e936bbd96?w=400&q=70" alt="Tea" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Gift Box" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=400&q=70" alt="Sweets" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=400&q=70" alt="Candy" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <!-- duplicate for seamless loop -->
+
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=400&q=70" alt="Baklava" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
-    <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=400&q=70" alt="Spices" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/lW6K7Yq.jpeg" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1676232731729-c06e936bbd96?w=400&q=70" alt="Tea" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Gift Box" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=400&q=70" alt="Sweets" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
     <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=400&q=70" alt="Candy" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=400&q=70" alt="Lokum" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/IpsVhWH.jpeg" alt="Baklava" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1661337223133-a92f4f68d001?w=400&q=70" alt="Spices" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1676232731729-c06e936bbd96?w=400&q=70" alt="Tea" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/C5Hf4VN.jpeg" alt="Gift Box" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://images.unsplash.com/photo-1598110750624-207050c4f28c?w=400&q=70" alt="Sweets" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
+    <div class="gallery-item"><img crossorigin="anonymous" src="https://i.imgur.com/9QeaCf7.jpeg" alt="Candy" loading="lazy" style="width:100%;height:100%;object-fit:cover;"/></div>
   </div>
 </section>
 
@@ -1033,7 +536,6 @@
   <p class="section-label reveal" data-i18n="why_label">Why Choose Us</p>
   <h2 class="section-title reveal" data-i18n="why_title">The King's Promise</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
-
   <div class="why-grid">
     <div class="why-card reveal">
       <img crossorigin="anonymous" src="https://images.unsplash.com/photo-1762808626502-a25dc8f6be6c?w=300&q=80" alt="Authentic" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
@@ -1041,12 +543,12 @@
       <p class="why-desc" data-i18n="why1_desc">Every sweet follows time-honoured Ottoman recipes with no shortcuts.</p>
     </div>
     <div class="why-card reveal">
-      <img crossorigin="anonymous" src="https://images.unsplash.com/photo-1649333195003-18c47d64ed18?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Istanbul" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
+      <img crossorigin="anonymous" src="https://images.unsplash.com/photo-1649333195003-18c47d64ed18?q=80&w=687&auto=format&fit=crop" alt="Istanbul" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
       <div class="why-title" data-i18n="why2_title">Prime Location</div>
       <p class="why-desc" data-i18n="why2_desc">Steps from the iconic Blue Mosque in the heart of historic Sultanahmet.</p>
     </div>
     <div class="why-card reveal">
-      <img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1682089094675-a8f9aff0ff31?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Service" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
+      <img crossorigin="anonymous" src="https://plus.unsplash.com/premium_photo-1682089094675-a8f9aff0ff31?q=80&w=1170&auto=format&fit=crop" alt="Service" style="width:100%;height:140px;object-fit:cover;margin-bottom:20px;"/>
       <div class="why-title" data-i18n="why3_title">Personal Service</div>
       <p class="why-desc" data-i18n="why3_desc">We're always here to help you choose the perfect flavours and gifts.</p>
     </div>
@@ -1058,7 +560,6 @@
   <p class="section-label reveal" data-i18n="test_label">Visitors Say</p>
   <h2 class="section-title reveal" data-i18n="test_title">Words of Delight</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
-
   <div class="testimonials-grid">
     <div class="testimonial reveal">
       <div class="testimonial-stars">★★★★★</div>
@@ -1083,58 +584,41 @@
   <p class="section-label reveal" data-i18n="photos_label">Our Guests</p>
   <h2 class="section-title reveal" data-i18n="photos_title">Happy Visitors</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
-
-  <p class="visitor-intro reveal" data-i18n="photos_intro">
-    Every day, travellers from around the world step through our doors.<br>
-    <em>These are their moments of delight.</em>
-  </p>
-
+  <p class="visitor-intro reveal" data-i18n="photos_intro">Every day, travellers from around the world step through our doors.<br><em>These are their moments of delight.</em></p>
   <div class="visitor-grid reveal">
-
     <div class="visitor-photo">
       <img src="https://instagram.fist7-2.fna.fbcdn.net/v/t51.82787-15/601472604_17843079075656108_5534637827643818957_n.jpg?stp=dst-jpg_e35_p640x640_sh0.08_tt6&_nc_cat=100&ig_cache_key=Mzc4ODIyMjYxNzI5NjMzOTU3Mg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4MTkyMC5zZHIuQzMifQ%3D%3D&_nc_ohc=RzT1sAwKybsQ7kNvwH3cUsc&_nc_oc=Ado7UdNAQm9ADnl4PiZ3_AywTDsbbLpMrDTj_vjaNBhYOl2j9UQFZGt26j5z9A0k6ciOFFh4NAcltTdg_zN68kfz&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fist7-2.fna&_nc_gid=JzXGl6V0YaVqM26bc1SX8g&_nc_ss=7a32e&oh=00_Afy7PJiXaaWoe6ZXfxf4DlFH_f7sVHk19qcJaqSfE-jjVw&oe=69CE039D" alt="Happy visitors at King Delight" loading="lazy" style="height:320px;"/>
       <div class="visitor-tag">📸 Real Visit</div>
       <div class="visitor-photo-overlay"><span class="visitor-caption">Happy customers at King Delight ✦</span></div>
     </div>
-
     <div class="visitor-photo">
       <img src="https://instagram.fist20-1.fna.fbcdn.net/v/t51.82787-15/601444651_17843078718656108_2439739599086850887_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=Mzc4ODIyMTc3OTA0Nzg3ODk3MQ%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4ODEwLnNkci5DMyJ9&_nc_ohc=bxgcr1hCx8YQ7kNvwH_Ph1-&_nc_oc=Adp5awBjoi6UTe06x-8A9nEGyNWSPkA2xcOxthjQKGhmlxz4catbNPyJpclJQ5_khzA4qMAo_4mAIAusSw_8-0nK&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fist20-1.fna&_nc_gid=G2Je4Pltg4X48NyqR5jvLQ&_nc_ss=7a32e&oh=00_Afxa7ylfi5_i7g-58RN_TrSJEjYxe8e1ZkfRj3iP1cA_LA&oe=69CE0EC9" alt="Visitors enjoying King Delight" loading="lazy" style="height:280px;"/>
       <div class="visitor-photo-overlay"><span class="visitor-caption">Moments of delight in Sultanahmet</span></div>
     </div>
-
     <div class="visitor-photo">
       <img src="https://instagram.fist20-2.fna.fbcdn.net/v/t51.82787-15/600850346_17843077980656108_135672293007090748_n.jpg?stp=dst-jpg_e35_s640x640_sh0.08_tt6&_nc_cat=110&ig_cache_key=Mzc4ODIyMDAzMzA2ODIwMzYyOA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4ODEwLnNkci5DMyJ9&_nc_ohc=fC37W7sJaWIQ7kNvwGYmozq&_nc_oc=AdqiqvherKGkEH29SAN6Pb7pgTA-HO6kunCeyflioxIAilC8EUdttIBXrQf_Bo2W8XYmMp47-rBj87wOUZhs3PeU&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fist20-2.fna&_nc_gid=G2Je4Pltg4X48NyqR5jvLQ&_nc_ss=7a32e&oh=00_AfyCTR2sMr5Fn16b-eAxmUTh01dA2nCivrcaT6yzyAv6Hw&oe=69CDF2BB" alt="King Delight shop visit" loading="lazy" style="height:260px;"/>
-      <div class="visitor-tag">📸 </div>
+      <div class="visitor-tag">📸</div>
       <div class="visitor-photo-overlay"><span class="visitor-caption">Smiles &amp; sweet memories ✦</span></div>
     </div>
-
     <div class="visitor-photo">
       <img src="https://instagram.fist20-2.fna.fbcdn.net/v/t51.82787-15/601231122_17843077314656108_3512342130426175201_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=108&ig_cache_key=Mzc4ODIxNzYyODYxNjMxMDAzMw%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4ODEwLnNkci5DMyJ9&_nc_ohc=DKUKWrQeYvgQ7kNvwGlfAj-&_nc_oc=AdpjpQvpCZxZIbfHSeyUmOKu02n8xNYfWioPOSw2n3VG1iDtltV_srd4WZr0B83cY0q2mk4Yiw6rKNtFZiZ3dkUS&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fist20-2.fna&_nc_gid=G2Je4Pltg4X48NyqR5jvLQ&_nc_ss=7a32e&oh=00_Afx2z0tc-_fHxN_ygOx2BG7dPgkMwyKuBsfMG4xWnSGNZA&oe=69CE0EA5" alt="Customers at King Delight Istanbul" loading="lazy" style="height:300px;"/>
+      <div class="visitor-tag">📸</div>
       <div class="visitor-photo-overlay"><span class="visitor-caption">Every visit a royal experience</span></div>
-    
-    <div class="visitor-tag">📸 </div></div>
-
-    
+    </div>
     <div class="visitor-photo">
       <img src="https://instagram.fist20-1.fna.fbcdn.net/v/t51.82787-15/606186708_17845079238656108_7598859537175421068_n.jpg?stp=dst-jpg_e35_tt6&_nc_cat=109&ig_cache_key=Mzc5NjIyMjI5MTIyNzc1MTIyNg%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4ODEwLnNkci5DMyJ9&_nc_ohc=XVgyupKIUdsQ7kNvwEXyMGS&_nc_oc=Adqg7i-59xbW9y7vN03eCpqvEDuDOshy7XIGHZAtQPszl3jvhY_jb2BKc4zAssCsvXUBXtrx_e49jFEHL71G2Fhx&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fist20-1.fna&_nc_gid=JzXGl6V0YaVqM26bc1SX8g&_nc_ss=7a32e&oh=00_Afyj6JPHKQfiE1PqdLbhmLEdwOp3N-0HU28RRZOiN3Y-nA&oe=69CDF363" alt="Visitors at King Delight" loading="lazy" style="height:290px;"/>
-      <div class="visitor-tag">📸 </div>
+      <div class="visitor-tag">📸</div>
       <div class="visitor-photo-overlay"><span class="visitor-caption">More sweet moments at King Delight ✦</span></div>
     </div>
-
-    
-
     <div class="visitor-photo">
       <img src="https://instagram.fist7-2.fna.fbcdn.net/v/t51.82787-15/619073044_17850085767656108_3659954286985417350_n.jpg?stp=dst-jpg_e35_s640x640_sh0.08_tt6&_nc_cat=102&ig_cache_key=MzgxMjgyMDUwMTQ3MTcyMzc1OA%3D%3D.3-ccb7-5&ccb=7-5&_nc_sid=58cdad&efg=eyJ2ZW5jb2RlX3RhZyI6InhwaWRzLjE0NDB4ODEwLnNkci5DMyJ9&_nc_ohc=s2QnKR81UMIQ7kNvwFnk5J0&_nc_oc=Adr7qi04yLQqJ_sNVUT07UxNT1O21BlZ58cr8WZYoUdTLYukj9zdYheSGJElx8LYTD-CLbwcJ1HvXyx_ObrEdVB6&_nc_ad=z-m&_nc_cid=0&_nc_zt=23&_nc_ht=instagram.fist7-2.fna&_nc_gid=JzXGl6V0YaVqM26bc1SX8g&_nc_ss=7a32e&oh=00_Afy3ga40XxAyaFnIoGIoeMMgvKWI2w1gNj0VZZdFlHIgHg&oe=69CDFDDB" alt="Happy customers at King Delight" loading="lazy" style="height:300px;"/>
       <div class="visitor-tag">📸</div>
       <div class="visitor-photo-overlay"><span class="visitor-caption">Sweet memories to take home ✦</span></div>
     </div>
-
   </div>
-
   <div class="visitor-share-cta reveal">
     <p data-i18n="photos_cta">Visited us? Tag us on Instagram <em>@king.delight1</em> — your photo might appear here! 📸</p>
     <a href="https://www.instagram.com/king.delight1" target="_blank" class="btn-primary" style="font-size:.75rem;" data-i18n="photos_btn">Share Your Moment</a>
-  <div class="visitor-tag"></div>
   </div>
 </section>
 
@@ -1143,16 +627,12 @@
   <p class="section-label reveal" data-i18n="visit_label">Come See Us</p>
   <h2 class="section-title reveal" data-i18n="visit_title">Visit the Shop</h2>
   <div class="divider reveal"><span class="divider-gem">✦</span></div>
-
   <div class="contact-grid">
     <div class="contact-card reveal">
       <img crossorigin="anonymous" src="https://images.unsplash.com/photo-1524231757912-21f4fe3a7200?w=400&q=80" alt="Istanbul Blue Mosque" style="width:100%;height:120px;object-fit:cover;margin-bottom:16px;"/>
       <div class="contact-card-title" data-i18n="visit_loc_title">Location</div>
-      <div class="contact-card-value" data-i18n="visit_loc_value">
-        Next to the Blue Mosque<br>(B Door), Sultanahmet<br>Istanbul, Turkey
-      </div>
+      <div class="contact-card-value" data-i18n="visit_loc_value">Next to the Blue Mosque<br>(B Door), Sultanahmet<br>Istanbul, Turkey</div>
     </div>
-  
     <div class="contact-card reveal">
       <img crossorigin="anonymous" src="https://i.imgur.com/UkooTE9.png" alt="Instagram" style="width:100%;height:120px;margin-bottom:16px;"/>
       <div class="contact-card-title" data-i18n="visit_ig_title">Instagram</div>
@@ -1165,14 +645,11 @@
       <img crossorigin="anonymous" src="https://img.freepik.com/premium-vector/gold-map-point-location-icon-vector-template_917138-5330.jpg" alt="Map" style="width:100%;height:120px;object-fit:cover;margin-bottom:16px;"/>
       <div class="contact-card-title" data-i18n="visit_map_title">Find Us on Maps</div>
       <div class="contact-card-value">
-        <a href="https://www.google.com/maps/place/KING+DELIGHT/@41.0065801,28.9767228,17z/data=!3m1!4b1!4m6!3m5!1s0x14cab926554226b9:0x84dca76db9abc2a9!8m2!3d41.0065801!4d28.9767228!16s%2Fg%2F11rwq_9knf?entry=ttu&g_ep=EgoyMDI2MDMyNC4wIKXMDSoASAFQAw%3D%3D" target="_blank" data-i18n="visit_map_link">Open in Google Maps →</a>
+        <a href="https://www.google.com/maps/place/KING+DELIGHT/@41.0065801,28.9767228,17z" target="_blank" data-i18n="visit_map_link">Open in Google Maps →</a>
       </div>
     </div>
   </div>
-
-  <a href="https://wa.me/905312270999" class="btn-primary" style="font-size:.8rem;" data-i18n="visit_whatsapp">
-    Contact Us on WhatsApp
-  </a>
+  <a href="https://wa.me/905312270999" class="btn-primary" style="font-size:.8rem;" data-i18n="visit_whatsapp">Contact Us on WhatsApp</a>
 </section>
 
 <!-- ═══ FOOTER ═══ -->
@@ -1181,400 +658,70 @@
   <div class="footer-copy" data-i18n="footer_copy">© 2026 King Delight Istanbul. All rights reserved.</div>
   <div class="footer-social" style="display:flex;gap:20px;align-items:center;">
     <a href="https://www.instagram.com/king.delight1" target="_blank" style="display:flex;align-items:center;gap:6px;color:var(--gold-pale);opacity:.55;text-decoration:none;font-size:.8rem;letter-spacing:.12em;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">
-      <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
       @king.delight1
     </a>
     <a href="https://wa.me/905312270999" target="_blank" style="display:flex;align-items:center;gap:6px;color:var(--gold-pale);opacity:.55;text-decoration:none;font-size:.8rem;letter-spacing:.12em;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">
-      <svg viewBox="0 0 24 24" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      <svg viewBox="0 0 24 24" width="16" height="16"><path fill="currentColor" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
       +90 531 227 09 99
     </a>
-     <a  target="_blank" style="display:flex;align-items:center;gap:6px;color:var(--gold-pale);opacity:.55;text-decoration:none;font-size:.8rem;letter-spacing:.12em;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">
-      auradigital
-    </a>
+    <a target="_blank" style="display:flex;align-items:center;gap:6px;color:var(--gold-pale);opacity:.55;text-decoration:none;font-size:.8rem;letter-spacing:.12em;transition:opacity .2s;" onmouseover="this.style.opacity=1" onmouseout="this.style.opacity=.55">auradigital</a>
   </div>
 </footer>
 
+<!-- ═══ LIGHTBOX ═══ -->
+<div id="lb-overlay" role="dialog" aria-modal="true" aria-label="Image viewer">
+  <button id="lb-close" aria-label="Close">&#x2715;</button>
+  <div id="lb-counter"></div>
+  <div id="lb-img-wrap">
+    <button id="lb-prev" aria-label="Previous">&#8592;</button>
+    <img id="lb-img" src="" alt="Gallery image" />
+    <button id="lb-next" aria-label="Next">&#8594;</button>
+  </div>
+  <div id="lb-caption"></div>
+  <div id="lb-thumbs"></div>
+</div>
+
 <!-- ═══ FLOATING SOCIAL BUTTONS ═══ -->
 <div class="social-float">
-
-  <!-- Instagram -->
   <a href="https://www.instagram.com/king.delight1" target="_blank" class="social-float-btn instagram" aria-label="Instagram">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-      <defs>
-        <linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%">
-          <stop offset="0%" style="stop-color:#C9922A"/>
-          <stop offset="50%" style="stop-color:#E8BC6A"/>
-          <stop offset="100%" style="stop-color:#F5DFA0"/>
-        </linearGradient>
-      </defs>
+      <defs><linearGradient id="ig-grad" x1="0%" y1="100%" x2="100%" y2="0%"><stop offset="0%" style="stop-color:#C9922A"/><stop offset="50%" style="stop-color:#E8BC6A"/><stop offset="100%" style="stop-color:#F5DFA0"/></linearGradient></defs>
       <path fill="url(#ig-grad)" d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
     </svg>
   </a>
-
-  <!-- WhatsApp -->
   <a href="https://wa.me/905312270999" class="social-float-btn whatsapp" aria-label="WhatsApp">
     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
       <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
     </svg>
   </a>
-
 </div>
 
 <script>
-  // ══════════════════════════════════════
-  //  FULL PAGE TRANSLATIONS — EN / FR / ES / RU
-  // ══════════════════════════════════════
   const translations = {
     en: {
-      // HERO
-      hero_badge:    "Istanbul · Est. Sultanahmet",
-      hero_sub:      "The Finest Turkish Confections",
-      hero_location: "Next to the Blue Mosque (B Door), Istanbul",
-      hero_desc:     "Handcrafted lokum, premium nuts, exotic spices and authentic sweets — steps away from the Blue Mosque.",
-      cta_explore:   "Explore Delights",
-      cta_find:      "Find Us",
-      scroll_hint:   "Discover",
-      // ABOUT
-      about_label:   "Our Story",
-      about_title:   "A Royal Heritage<br>of Sweetness",
-      about_p1:      "Nestled in the heart of historic Sultanahmet, <strong>King Delight</strong> brings the timeless tradition of Ottoman confectionery to the world's most curious travellers.",
-      about_p2:      "From <strong>rose-scented lokum</strong> to hand-roasted pistachios, every piece is crafted with authentic recipes passed through generations — a true taste of Istanbul's soul.",
-      about_p3:      "Whether you're shopping for a gift or indulging yourself, our shop is an experience in itself — fragrant, colourful, and warmly welcoming.",
-      stat_varieties:"Varieties",
-      stat_authentic:"Authentic",
-      stat_flavour:  "Flavour",
-      stat_rated:    "Rated",
-      // PRODUCTS
-      products_label:"What We Offer",
-      products_title:"Our Delights",
-      tag_signature: "Signature",
-      tag_new:       "New",
-      tag_popular:   "Popular",
-      prod_lokum_name:   "Turkish Lokum",
-      prod_lokum_desc:   "Rose, pistachio, pomegranate & dozens more. The original Ottoman delight.",
-      prod_perfume_name: "Ottoman Perfumes",
-      prod_perfume_desc: "Rare oud, rose water & amber — timeless oriental fragrances bottled in Istanbul.",
-      prod_savon_name:   "Artisan Savon",
-      prod_savon_desc:   "Handcrafted Turkish soaps with olive oil, rose & laurel — pure, natural, luxurious.",
-      prod_baklava_name: "Baklava",
-      prod_baklava_desc: "Layers of golden pastry, honey and nuts. Crispy, flaky perfection.",
-      prod_spices_name:  "Exotic Spices",
-      prod_spices_desc:  "Saffron, sumac, za'atar and signature spice blends from the Grand Bazaar.",
-      prod_tea_name:     "Turkish Tea",
-      prod_tea_desc:     "Premium çay herbal infusions to take home.",
-      prod_coffee_name:  "Coffee",
-      prod_coffee_desc:  "Rich Turkish coffee served the traditional Ottoman way — bold, aromatic and unforgettable.",
-      // WHY US
-      why_label:   "Why Choose Us",
-      why_title:   "The King's Promise",
-      why1_title:  "Authentic Recipes",
-      why1_desc:   "Every sweet follows time-honoured Ottoman recipes with no shortcuts.",
-      why2_title:  "Prime Location",
-      why2_desc:   "Steps from the iconic Blue Mosque in the heart of historic Sultanahmet.",
-      why3_title:  "Personal Service",
-      why3_desc:   "We're always here to help you choose the perfect flavours and gifts.",
-      // TESTIMONIALS
-      test_label:    "Visitors Say",
-      test_title:    "Words of Delight",
-      test1_text:    "The most incredible lokum I've ever tasted. The rose & pistachio combination was absolutely divine — I bought three boxes to take home to my family.",
-      test1_author:  "— Sarah M., London",
-      test2_text:    "A hidden gem right next to the Blue Mosque. The owner was so warm and let us taste everything. We came back three days in a row on our holiday!",
-      test2_author:  "— Carlos R., Madrid",
-      test3_text:    "Contacted them on WhatsApp before arriving and they prepared a beautiful custom gift box for me. The quality is outstanding and the packaging is gorgeous. Highly recommend!",
-      test3_author:  "— Aisha K., Dubai",
-      // VISITOR PHOTOS
-      photos_label:  "Our Guests",
-      photos_title:  "Happy Visitors",
-      photos_intro:  "Every day, travellers from around the world step through our doors. These are their moments of delight.",
-      photos_cta:    "Visited us? Tag us on Instagram @king.delight1 — your photo might appear here! 📸",
-      photos_btn:    "Share Your Moment",
-      // VISIT
-      visit_label:     "Come See Us",
-      visit_title:     "Visit the Shop",
-      visit_loc_title: "Location",
-      visit_loc_value: "Next to the Blue Mosque<br>(B Door), Sultanahmet<br>Istanbul, Turkey",
-      visit_ig_title:  "Instagram",
-      visit_ig_follow: "Follow for daily delights",
-      visit_map_title: "Find Us on Maps",
-      visit_map_link:  "Open in Google Maps →",
-      visit_whatsapp:  "Contact Us on WhatsApp",
-      // FOOTER
-      footer_copy: "© 2026 King Delight Istanbul. All rights reserved.",
+      hero_badge:"Istanbul · Est. Sultanahmet",hero_sub:"The Finest Turkish Confections",hero_location:"Next to the Blue Mosque (B Door), Istanbul",hero_desc:"Handcrafted lokum, premium nuts, exotic spices and authentic sweets — steps away from the Blue Mosque.",cta_explore:"Explore Delights",cta_find:"Find Us",scroll_hint:"Discover",about_label:"Our Story",about_title:"A Royal Heritage<br>of Sweetness",about_p1:"Nestled in the heart of historic Sultanahmet, <strong>King Delight</strong> brings the timeless tradition of Ottoman confectionery to the world's most curious travellers.",about_p2:"From <strong>rose-scented lokum</strong> to hand-roasted pistachios, every piece is crafted with authentic recipes passed through generations — a true taste of Istanbul's soul.",about_p3:"Whether you're shopping for a gift or indulging yourself, our shop is an experience in itself — fragrant, colourful, and warmly welcoming.",stat_varieties:"Varieties",stat_authentic:"Authentic",stat_flavour:"Flavour",stat_rated:"Rated",products_label:"What We Offer",products_title:"Our Delights",tag_signature:"Signature",tag_new:"New",tag_popular:"Popular",prod_lokum_name:"Turkish Lokum",prod_lokum_desc:"Rose, pistachio, pomegranate & dozens more. The original Ottoman delight.",prod_perfume_name:"Ottoman Perfumes",prod_perfume_desc:"Rare oud, rose water & amber — timeless oriental fragrances bottled in Istanbul.",prod_savon_name:"Artisan Savon",prod_savon_desc:"Handcrafted Turkish soaps with olive oil, rose & laurel — pure, natural, luxurious.",prod_baklava_name:"Baklava",prod_baklava_desc:"Layers of golden pastry, honey and nuts. Crispy, flaky perfection.",prod_spices_name:"Exotic Spices",prod_spices_desc:"Saffron, sumac, za'atar and signature spice blends from the Grand Bazaar.",prod_tea_name:"Turkish Tea",prod_tea_desc:"Premium çay herbal infusions to take home.",why_label:"Why Choose Us",why_title:"The King's Promise",why1_title:"Authentic Recipes",why1_desc:"Every sweet follows time-honoured Ottoman recipes with no shortcuts.",why2_title:"Prime Location",why2_desc:"Steps from the iconic Blue Mosque in the heart of historic Sultanahmet.",why3_title:"Personal Service",why3_desc:"We're always here to help you choose the perfect flavours and gifts.",test_label:"Visitors Say",test_title:"Words of Delight",test1_text:"The most incredible lokum I've ever tasted. The rose & pistachio combination was absolutely divine — I bought three boxes to take home to my family.",test1_author:"— Sarah M., London",test2_text:"A hidden gem right next to the Blue Mosque. The owner was so warm and let us taste everything. We came back three days in a row on our holiday!",test2_author:"— Carlos R., Madrid",test3_text:"Contacted them on WhatsApp before arriving and they prepared a beautiful custom gift box for me. The quality is outstanding and the packaging is gorgeous. Highly recommend!",test3_author:"— Aisha K., Dubai",photos_label:"Our Guests",photos_title:"Happy Visitors",photos_intro:"Every day, travellers from around the world step through our doors. These are their moments of delight.",photos_cta:"Visited us? Tag us on Instagram @king.delight1 — your photo might appear here! 📸",photos_btn:"Share Your Moment",visit_label:"Come See Us",visit_title:"Visit the Shop",visit_loc_title:"Location",visit_loc_value:"Next to the Blue Mosque<br>(B Door), Sultanahmet<br>Istanbul, Turkey",visit_ig_title:"Instagram",visit_ig_follow:"Follow for daily delights",visit_map_title:"Find Us on Maps",visit_map_link:"Open in Google Maps →",visit_whatsapp:"Contact Us on WhatsApp",footer_copy:"© 2026 King Delight Istanbul. All rights reserved."
     },
-
     fr: {
-      hero_badge:    "Istanbul · Fondé à Sultanahmet",
-      hero_sub:      "Les Plus Fines Confiseries Turques",
-      hero_location: "À côté de la Mosquée Bleue (Porte B), Istanbul",
-      hero_desc:     "Lokum artisanal, épices exotiques et douceurs authentiques — à deux pas de la Mosquée Bleue.",
-      cta_explore:   "Découvrir",
-      cta_find:      "Nous Trouver",
-      scroll_hint:   "Découvrir",
-      about_label:   "Notre Histoire",
-      about_title:   "Un Héritage Royal<br>de Douceurs",
-      about_p1:      "Niché au cœur du Sultanahmet historique, <strong>King Delight</strong> perpétue la tradition ottomane de la confiserie pour les voyageurs du monde entier.",
-      about_p2:      "Du <strong>lokum à la rose</strong> aux pistaches grillées à la main, chaque pièce est façonnée selon des recettes authentiques transmises de génération en génération.",
-      about_p3:      "Que vous cherchiez un cadeau ou un plaisir pour vous-même, notre boutique est une expérience à part entière — parfumée, colorée et chaleureuse.",
-      stat_varieties:"Variétés",
-      stat_authentic:"Authentique",
-      stat_flavour:  "Saveur",
-      stat_rated:    "Noté",
-      products_label:"Ce Que Nous Offrons",
-      products_title:"Nos Délices",
-      tag_signature: "Signature",
-      tag_new:       "Nouveau",
-      tag_popular:   "Populaire",
-      prod_lokum_name:   "Lokum Turc",
-      prod_lokum_desc:   "Rose, pistache, grenade et des dizaines d'autres. Le délice ottoman original.",
-      prod_perfume_name: "Parfums Ottomans",
-      prod_perfume_desc: "Oud rare, eau de rose et ambre — fragrances orientales intemporelles d'Istanbul.",
-      prod_savon_name:   "Savon Artisanal",
-      prod_savon_desc:   "Savons turcs artisanaux à l'huile d'olive, à la rose et au laurier — purs, naturels, luxueux.",
-      prod_baklava_name: "Baklava",
-      prod_baklava_desc: "Couches de pâte dorée, miel et noix. Une perfection croustillante et feuilletée.",
-      prod_spices_name:  "Épices Exotiques",
-      prod_spices_desc:  "Safran, sumac, za'atar et mélanges d'épices signature du Grand Bazar.",
-      prod_tea_name:     "Thé Turc",
-      prod_tea_desc:     "Infusions de çay premium à emporter chez vous.",
-      prod_coffee_name:  "Café",
-      prod_coffee_desc:  "Riche café turc servi à la manière ottomane traditionnelle — intense, aromatique et inoubliable.",
-      why_label:   "Pourquoi Nous Choisir",
-      why_title:   "La Promesse Royale",
-      why1_title:  "Recettes Authentiques",
-      why1_desc:   "Chaque douceur suit des recettes ottomanes séculaires, sans compromis.",
-      why2_title:  "Emplacement Idéal",
-      why2_desc:   "À quelques pas de la Mosquée Bleue, au cœur du Sultanahmet historique.",
-      why3_title:  "Service Personnalisé",
-      why3_desc:   "Nous sommes toujours là pour vous aider à choisir les saveurs et cadeaux parfaits.",
-      test_label:    "Nos Visiteurs Disent",
-      test_title:    "Mots de Délice",
-      test1_text:    "Le lokum le plus incroyable que j'aie jamais goûté. La combinaison rose et pistache était absolument divine — j'ai acheté trois boîtes pour ma famille.",
-      test1_author:  "— Sarah M., Londres",
-      test2_text:    "Une perle cachée juste à côté de la Mosquée Bleue. Le propriétaire était si chaleureux et nous a tout fait goûter. Nous sommes revenus trois jours de suite !",
-      test2_author:  "— Carlos R., Madrid",
-      test3_text:    "Je les ai contactés sur WhatsApp avant d'arriver et ils ont préparé un magnifique coffret cadeau personnalisé. La qualité est exceptionnelle. Hautement recommandé !",
-      test3_author:  "— Aisha K., Dubaï",
-      photos_label:  "Nos Invités",
-      photos_title:  "Visiteurs Heureux",
-      photos_intro:  "Chaque jour, des voyageurs du monde entier franchissent nos portes. Voici leurs moments de délice.",
-      photos_cta:    "Vous nous avez rendus visite ? Taguez-nous sur Instagram @king.delight1 — votre photo pourrait apparaître ici ! 📸",
-      photos_btn:    "Partager Votre Moment",
-      visit_label:     "Venez Nous Voir",
-      visit_title:     "Visiter la Boutique",
-      visit_loc_title: "Adresse",
-      visit_loc_value: "À côté de la Mosquée Bleue<br>(Porte B), Sultanahmet<br>Istanbul, Turquie",
-      visit_ig_title:  "Instagram",
-      visit_ig_follow: "Suivez-nous pour les délices du jour",
-      visit_map_title: "Nous Trouver sur Maps",
-      visit_map_link:  "Ouvrir dans Google Maps →",
-      visit_whatsapp:  "Contactez-nous sur WhatsApp",
-      footer_copy: "© 2026 King Delight Istanbul. Tous droits réservés.",
+      hero_badge:"Istanbul · Fondé à Sultanahmet",hero_sub:"Les Plus Fines Confiseries Turques",hero_location:"À côté de la Mosquée Bleue (Porte B), Istanbul",hero_desc:"Lokum artisanal, épices exotiques et douceurs authentiques — à deux pas de la Mosquée Bleue.",cta_explore:"Découvrir",cta_find:"Nous Trouver",scroll_hint:"Découvrir",about_label:"Notre Histoire",about_title:"Un Héritage Royal<br>de Douceurs",about_p1:"Niché au cœur du Sultanahmet historique, <strong>King Delight</strong> perpétue la tradition ottomane de la confiserie pour les voyageurs du monde entier.",about_p2:"Du <strong>lokum à la rose</strong> aux pistaches grillées à la main, chaque pièce est façonnée selon des recettes authentiques transmises de génération en génération.",about_p3:"Que vous cherchiez un cadeau ou un plaisir pour vous-même, notre boutique est une expérience à part entière — parfumée, colorée et chaleureuse.",stat_varieties:"Variétés",stat_authentic:"Authentique",stat_flavour:"Saveur",stat_rated:"Noté",products_label:"Ce Que Nous Offrons",products_title:"Nos Délices",tag_signature:"Signature",tag_new:"Nouveau",tag_popular:"Populaire",prod_lokum_name:"Lokum Turc",prod_lokum_desc:"Rose, pistache, grenade et des dizaines d'autres. Le délice ottoman original.",prod_perfume_name:"Parfums Ottomans",prod_perfume_desc:"Oud rare, eau de rose et ambre — fragrances orientales intemporelles d'Istanbul.",prod_savon_name:"Savon Artisanal",prod_savon_desc:"Savons turcs artisanaux à l'huile d'olive, à la rose et au laurier — purs, naturels, luxueux.",prod_baklava_name:"Baklava",prod_baklava_desc:"Couches de pâte dorée, miel et noix. Une perfection croustillante et feuilletée.",prod_spices_name:"Épices Exotiques",prod_spices_desc:"Safran, sumac, za'atar et mélanges d'épices signature du Grand Bazar.",prod_tea_name:"Thé Turc",prod_tea_desc:"Infusions de çay premium à emporter chez vous.",why_label:"Pourquoi Nous Choisir",why_title:"La Promesse Royale",why1_title:"Recettes Authentiques",why1_desc:"Chaque douceur suit des recettes ottomanes séculaires, sans compromis.",why2_title:"Emplacement Idéal",why2_desc:"À quelques pas de la Mosquée Bleue, au cœur du Sultanahmet historique.",why3_title:"Service Personnalisé",why3_desc:"Nous sommes toujours là pour vous aider à choisir les saveurs et cadeaux parfaits.",test_label:"Nos Visiteurs Disent",test_title:"Mots de Délice",test1_text:"Le lokum le plus incroyable que j'aie jamais goûté. La combinaison rose et pistache était absolument divine — j'ai acheté trois boîtes pour ma famille.",test1_author:"— Sarah M., Londres",test2_text:"Une perle cachée juste à côté de la Mosquée Bleue. Le propriétaire était si chaleureux et nous a tout fait goûter. Nous sommes revenus trois jours de suite !",test2_author:"— Carlos R., Madrid",test3_text:"Je les ai contactés sur WhatsApp avant d'arriver et ils ont préparé un magnifique coffret cadeau personnalisé. La qualité est exceptionnelle. Hautement recommandé !",test3_author:"— Aisha K., Dubaï",photos_label:"Nos Invités",photos_title:"Visiteurs Heureux",photos_intro:"Chaque jour, des voyageurs du monde entier franchissent nos portes. Voici leurs moments de délice.",photos_cta:"Vous nous avez rendus visite ? Taguez-nous sur Instagram @king.delight1 — votre photo pourrait apparaître ici ! 📸",photos_btn:"Partager Votre Moment",visit_label:"Venez Nous Voir",visit_title:"Visiter la Boutique",visit_loc_title:"Adresse",visit_loc_value:"À côté de la Mosquée Bleue<br>(Porte B), Sultanahmet<br>Istanbul, Turquie",visit_ig_title:"Instagram",visit_ig_follow:"Suivez-nous pour les délices du jour",visit_map_title:"Nous Trouver sur Maps",visit_map_link:"Ouvrir dans Google Maps →",visit_whatsapp:"Contactez-nous sur WhatsApp",footer_copy:"© 2026 King Delight Istanbul. Tous droits réservés."
     },
     ar: {
-  hero_badge: "إسطنبول · تأسس في السلطان أحمد",
-  hero_sub: "أفخر الحلويات التركية",
-  hero_location: "بجانب الجامع الأزرق (باب B)، إسطنبول",
-  hero_desc: "راحة تركية مصنوعة يدويًا، مكسرات فاخرة، توابل مميزة وحلويات أصيلة — على بعد خطوات من الجامع الأزرق.",
-  cta_explore: "اكتشف الحلويات",
-  cta_find: "اعثر علينا",
-  scroll_hint: "اكتشف",
-
-  about_label: "قصتنا",
-  about_title: "تراث ملكي<br>من الحلاوة",
-  about_p1: "في قلب السلطان أحمد التاريخي، يقدم <strong>King Delight</strong> تقاليد الحلويات العثمانية الأصيلة لزوار العالم.",
-  about_p2: "من <strong>راحة الحلقوم بنكهة الورد</strong> إلى الفستق المحمص يدويًا، كل قطعة مصنوعة بوصفات أصيلة عبر الأجيال.",
-  about_p3: "سواء كنت تبحث عن هدية أو تدلل نفسك، متجرنا تجربة فريدة — عطرية، ملونة، ومرحبة.",
-
-  stat_varieties: "أنواع",
-  stat_authentic: "أصلي",
-  stat_flavour: "نكهة",
-  stat_rated: "تقييم",
-
-  products_label: "ماذا نقدم",
-  products_title: "منتجاتنا",
-  prod_lokum_name: "راحة تركية",
-  prod_lokum_desc: "ورد، فستق، رمان والمزيد — الحلوى العثمانية الأصلية.",
-  prod_perfume_name: "عطور عثمانية",
-  prod_perfume_desc: "عود نادر، ماء الورد والعنبر — عطور شرقية أصيلة.",
-  prod_savon_name: "صابون يدوي",
-  prod_savon_desc: "صابون تركي طبيعي بزيت الزيتون والورد والغار.",
-  prod_baklava_name: "بقلاوة",
-  prod_baklava_desc: "طبقات من العجين الذهبي مع العسل والمكسرات.",
-  prod_spices_name: "توابل مميزة",
-  prod_spices_desc: "زعفران، سماق، زعتر وخلطات خاصة.",
-  prod_tea_name: "شاي تركي",
-  prod_tea_desc: "شاي فاخر ومشروبات عشبية.",
-
-  tag_signature: "مميز",
-  tag_new: "جديد",
-  tag_popular: "الأكثر طلبًا",
-
-  why_label: "لماذا نحن",
-  why_title: "وعد الملك",
-  why1_title: "وصفات أصيلة",
-  why1_desc: "كل حلوى تُحضّر بوصفات عثمانية تقليدية.",
-  why2_title: "موقع مميز",
-  why2_desc: "خطوات من الجامع الأزرق في قلب السلطان أحمد.",
-  why3_title: "خدمة شخصية",
-  why3_desc: "نساعدك دائمًا لاختيار الأفضل.",
-
-  test_label: "آراء الزوار",
-  test_title: "كلمات رائعة",
-
-  photos_label: "ضيوفنا",
-  photos_title: "زوار سعداء",
-  photos_intro: "كل يوم، يزورنا أشخاص من جميع أنحاء العالم.<br><em>هذه لحظاتهم الجميلة.</em>"
-},
-
-    es: {
-      hero_badge:    "Estambul · Est. Sultanahmet",
-      hero_sub:      "Las Mejores Confituras Turcas",
-      hero_location: "Junto a la Mezquita Azul (Puerta B), Estambul",
-      hero_desc:     "Lokum artesanal, especias exóticas y dulces auténticos — a pasos de la Mezquita Azul.",
-      cta_explore:   "Explorar",
-      cta_find:      "Encuéntranos",
-      scroll_hint:   "Descubrir",
-      about_label:   "Nuestra Historia",
-      about_title:   "Una Herencia Real<br>de Dulzura",
-      about_p1:      "Ubicado en el corazón del histórico Sultanahmet, <strong>King Delight</strong> trae la tradición otomana de confitería a los viajeros más curiosos del mundo.",
-      about_p2:      "Desde el <strong>lokum con aroma a rosa</strong> hasta los pistachos tostados a mano, cada pieza está elaborada con recetas auténticas transmitidas de generación en generación.",
-      about_p3:      "Ya sea que compre un regalo o se dé un capricho, nuestra tienda es una experiencia en sí misma — fragante, colorida y cálidamente acogedora.",
-      stat_varieties:"Variedades",
-      stat_authentic:"Auténtico",
-      stat_flavour:  "Sabor",
-      stat_rated:    "Valorado",
-      products_label:"Lo Que Ofrecemos",
-      products_title:"Nuestros Delicias",
-      tag_signature: "Firma",
-      tag_new:       "Nuevo",
-      tag_popular:   "Popular",
-      prod_lokum_name:   "Lokum Turco",
-      prod_lokum_desc:   "Rosa, pistacho, granada y docenas más. El delicia otomana original.",
-      prod_perfume_name: "Perfumes Otomanos",
-      prod_perfume_desc: "Oud raro, agua de rosas y ámbar — fragancias orientales atemporales embotelladas en Estambul.",
-      prod_savon_name:   "Jabón Artesanal",
-      prod_savon_desc:   "Jabones turcos artesanales con aceite de oliva, rosa y laurel — puros, naturales, lujosos.",
-      prod_baklava_name: "Baklava",
-      prod_baklava_desc: "Capas de hojaldre dorado, miel y nueces. Perfección crujiente y hojaldrada.",
-      prod_spices_name:  "Especias Exóticas",
-      prod_spices_desc:  "Azafrán, zumaque, za'atar y mezclas de especias del Gran Bazar.",
-      prod_tea_name:     "Té Turco",
-      prod_tea_desc:     "Infusiones de çay premium para llevar a casa.",
-      prod_coffee_name:  "Café",
-      prod_coffee_desc:  "Rico café turco servido a la manera otomana tradicional — intenso, aromático e inolvidable.",
-      why_label:   "Por Qué Elegirnos",
-      why_title:   "La Promesa Real",
-      why1_title:  "Recetas Auténticas",
-      why1_desc:   "Cada dulce sigue recetas otomanas centenarias sin atajos.",
-      why2_title:  "Ubicación Privilegiada",
-      why2_desc:   "A pasos de la icónica Mezquita Azul en el corazón del histórico Sultanahmet.",
-      why3_title:  "Servicio Personal",
-      why3_desc:   "Siempre estamos aquí para ayudarle a elegir los sabores y regalos perfectos.",
-      test_label:    "Dicen los Visitantes",
-      test_title:    "Palabras de Deleite",
-      test1_text:    "El lokum más increíble que he probado. La combinación de rosa y pistacho era absolutamente divina — compré tres cajas para llevar a mi familia.",
-      test1_author:  "— Sarah M., Londres",
-      test2_text:    "Una joya escondida justo al lado de la Mezquita Azul. El dueño fue tan amable y nos dejó probar todo. ¡Volvimos tres días seguidos en nuestras vacaciones!",
-      test2_author:  "— Carlos R., Madrid",
-      test3_text:    "Los contacté por WhatsApp antes de llegar y prepararon una hermosa caja de regalo personalizada. La calidad es excepcional. ¡Muy recomendado!",
-      test3_author:  "— Aisha K., Dubái",
-      photos_label:  "Nuestros Huéspedes",
-      photos_title:  "Visitantes Felices",
-      photos_intro:  "Cada día, viajeros de todo el mundo cruzan nuestras puertas. Estos son sus momentos de deleite.",
-      photos_cta:    "¿Nos visitaste? ¡Etiquétanos en Instagram @king.delight1 — tu foto podría aparecer aquí! 📸",
-      photos_btn:    "Comparte Tu Momento",
-      visit_label:     "Ven a Vernos",
-      visit_title:     "Visita la Tienda",
-      visit_loc_title: "Ubicación",
-      visit_loc_value: "Junto a la Mezquita Azul<br>(Puerta B), Sultanahmet<br>Estambul, Turquía",
-      visit_ig_title:  "Instagram",
-      visit_ig_follow: "Síguenos para delicias diarias",
-      visit_map_title: "Encuéntranos en Maps",
-      visit_map_link:  "Abrir en Google Maps →",
-      visit_whatsapp:  "Contáctanos por WhatsApp",
-      footer_copy: "© 2026 King Delight Istanbul. Todos los derechos reservados.",
+      hero_badge:"إسطنبول · تأسس في السلطان أحمد",hero_sub:"أفخر الحلويات التركية",hero_location:"بجانب الجامع الأزرق (باب B)، إسطنبول",hero_desc:"راحة تركية مصنوعة يدويًا، مكسرات فاخرة، توابل مميزة وحلويات أصيلة — على بعد خطوات من الجامع الأزرق.",cta_explore:"اكتشف الحلويات",cta_find:"اعثر علينا",scroll_hint:"اكتشف",about_label:"قصتنا",about_title:"تراث ملكي<br>من الحلاوة",about_p1:"في قلب السلطان أحمد التاريخي، يقدم <strong>King Delight</strong> تقاليد الحلويات العثمانية الأصيلة لزوار العالم.",about_p2:"من <strong>راحة الحلقوم بنكهة الورد</strong> إلى الفستق المحمص يدويًا، كل قطعة مصنوعة بوصفات أصيلة عبر الأجيال.",about_p3:"سواء كنت تبحث عن هدية أو تدلل نفسك، متجرنا تجربة فريدة — عطرية، ملونة، ومرحبة.",stat_varieties:"أنواع",stat_authentic:"أصلي",stat_flavour:"نكهة",stat_rated:"تقييم",products_label:"ماذا نقدم",products_title:"منتجاتنا",tag_signature:"مميز",tag_new:"جديد",tag_popular:"الأكثر طلبًا",prod_lokum_name:"راحة تركية",prod_lokum_desc:"ورد، فستق، رمان والمزيد — الحلوى العثمانية الأصلية.",prod_perfume_name:"عطور عثمانية",prod_perfume_desc:"عود نادر، ماء الورد والعنبر — عطور شرقية أصيلة.",prod_savon_name:"صابون يدوي",prod_savon_desc:"صابون تركي طبيعي بزيت الزيتون والورد والغار.",prod_baklava_name:"بقلاوة",prod_baklava_desc:"طبقات من العجين الذهبي مع العسل والمكسرات.",prod_spices_name:"توابل مميزة",prod_spices_desc:"زعفران، سماق، زعتر وخلطات خاصة.",prod_tea_name:"شاي تركي",prod_tea_desc:"شاي فاخر ومشروبات عشبية.",why_label:"لماذا نحن",why_title:"وعد الملك",why1_title:"وصفات أصيلة",why1_desc:"كل حلوى تُحضّر بوصفات عثمانية تقليدية.",why2_title:"موقع مميز",why2_desc:"خطوات من الجامع الأزرق في قلب السلطان أحمد.",why3_title:"خدمة شخصية",why3_desc:"نساعدك دائمًا لاختيار الأفضل.",test_label:"آراء الزوار",test_title:"كلمات رائعة",test1_text:"أروع راحة الحلقوم تذوقتها في حياتي. مزيج الورد والفستق كان إلهيًا — اشتريت ثلاث علب لعائلتي.",test1_author:"— سارة م، لندن",test2_text:"جوهرة خفية بجانب الجامع الأزرق. الصاحب كان دافئاً جداً وأتاح لنا تذوق كل شيء. عدنا ثلاثة أيام متتالية!",test2_author:"— كارلوس ر، مدريد",test3_text:"تواصلت معهم عبر واتساب قبل الوصول وأعدوا لي صندوق هدايا جميلاً مخصصاً. الجودة رائعة والتغليف أنيق. أنصح به بشدة!",test3_author:"— عائشة ك، دبي",photos_label:"ضيوفنا",photos_title:"زوار سعداء",photos_intro:"كل يوم، يزورنا أشخاص من جميع أنحاء العالم. هذه لحظاتهم الجميلة.",photos_cta:"زرتنا؟ ضعنا في تاج على إنستغرام @king.delight1 — قد تظهر صورتك هنا! 📸",photos_btn:"شارك لحظتك",visit_label:"تعال لزيارتنا",visit_title:"زيارة المتجر",visit_loc_title:"الموقع",visit_loc_value:"بجانب الجامع الأزرق<br>(باب B)، السلطان أحمد<br>إسطنبول، تركيا",visit_ig_title:"إنستغرام",visit_ig_follow:"تابعنا للحلويات اليومية",visit_map_title:"ابحث عنا في الخرائط",visit_map_link:"افتح في خرائط جوجل ←",visit_whatsapp:"تواصل معنا على واتساب",footer_copy:"© 2026 King Delight Istanbul. جميع الحقوق محفوظة."
     },
-
+    es: {
+      hero_badge:"Estambul · Est. Sultanahmet",hero_sub:"Las Mejores Confituras Turcas",hero_location:"Junto a la Mezquita Azul (Puerta B), Estambul",hero_desc:"Lokum artesanal, especias exóticas y dulces auténticos — a pasos de la Mezquita Azul.",cta_explore:"Explorar",cta_find:"Encuéntranos",scroll_hint:"Descubrir",about_label:"Nuestra Historia",about_title:"Una Herencia Real<br>de Dulzura",about_p1:"Ubicado en el corazón del histórico Sultanahmet, <strong>King Delight</strong> trae la tradición otomana de confitería a los viajeros más curiosos del mundo.",about_p2:"Desde el <strong>lokum con aroma a rosa</strong> hasta los pistachos tostados a mano, cada pieza está elaborada con recetas auténticas transmitidas de generación en generación.",about_p3:"Ya sea que compre un regalo o se dé un capricho, nuestra tienda es una experiencia en sí misma — fragante, colorida y cálidamente acogedora.",stat_varieties:"Variedades",stat_authentic:"Auténtico",stat_flavour:"Sabor",stat_rated:"Valorado",products_label:"Lo Que Ofrecemos",products_title:"Nuestros Delicias",tag_signature:"Firma",tag_new:"Nuevo",tag_popular:"Popular",prod_lokum_name:"Lokum Turco",prod_lokum_desc:"Rosa, pistacho, granada y docenas más. El delicia otomana original.",prod_perfume_name:"Perfumes Otomanos",prod_perfume_desc:"Oud raro, agua de rosas y ámbar — fragancias orientales atemporales embotelladas en Estambul.",prod_savon_name:"Jabón Artesanal",prod_savon_desc:"Jabones turcos artesanales con aceite de oliva, rosa y laurel — puros, naturales, lujosos.",prod_baklava_name:"Baklava",prod_baklava_desc:"Capas de hojaldre dorado, miel y nueces. Perfección crujiente y hojaldrada.",prod_spices_name:"Especias Exóticas",prod_spices_desc:"Azafrán, zumaque, za'atar y mezclas de especias del Gran Bazar.",prod_tea_name:"Té Turco",prod_tea_desc:"Infusiones de çay premium para llevar a casa.",why_label:"Por Qué Elegirnos",why_title:"La Promesa Real",why1_title:"Recetas Auténticas",why1_desc:"Cada dulce sigue recetas otomanas centenarias sin atajos.",why2_title:"Ubicación Privilegiada",why2_desc:"A pasos de la icónica Mezquita Azul en el corazón del histórico Sultanahmet.",why3_title:"Servicio Personal",why3_desc:"Siempre estamos aquí para ayudarle a elegir los sabores y regalos perfectos.",test_label:"Dicen los Visitantes",test_title:"Palabras de Deleite",test1_text:"El lokum más increíble que he probado. La combinación de rosa y pistacho era absolutamente divina — compré tres cajas para llevar a mi familia.",test1_author:"— Sarah M., Londres",test2_text:"Una joya escondida justo al lado de la Mezquita Azul. El dueño fue tan amable y nos dejó probar todo. ¡Volvimos tres días seguidos en nuestras vacaciones!",test2_author:"— Carlos R., Madrid",test3_text:"Los contacté por WhatsApp antes de llegar y prepararon una hermosa caja de regalo personalizada. La calidad es excepcional. ¡Muy recomendado!",test3_author:"— Aisha K., Dubái",photos_label:"Nuestros Huéspedes",photos_title:"Visitantes Felices",photos_intro:"Cada día, viajeros de todo el mundo cruzan nuestras puertas. Estos son sus momentos de deleite.",photos_cta:"¿Nos visitaste? ¡Etiquétanos en Instagram @king.delight1 — tu foto podría aparecer aquí! 📸",photos_btn:"Comparte Tu Momento",visit_label:"Ven a Vernos",visit_title:"Visita la Tienda",visit_loc_title:"Ubicación",visit_loc_value:"Junto a la Mezquita Azul<br>(Puerta B), Sultanahmet<br>Estambul, Turquía",visit_ig_title:"Instagram",visit_ig_follow:"Síguenos para delicias diarias",visit_map_title:"Encuéntranos en Maps",visit_map_link:"Abrir en Google Maps →",visit_whatsapp:"Contáctanos por WhatsApp",footer_copy:"© 2026 King Delight Istanbul. Todos los derechos reservados."
+    },
     ru: {
-      hero_badge:    "Стамбул · Основан в Султанахмете",
-      hero_sub:      "Лучшие Турецкие Сладости",
-      hero_location: "Рядом с Голубой Мечетью (Вход B), Стамбул",
-      hero_desc:     "Ручной лукум, экзотические специи и аутентичные сладости — в шаге от Голубой Мечети.",
-      cta_explore:   "Открыть",
-      cta_find:      "Найти нас",
-      scroll_hint:   "Узнать",
-      about_label:   "Наша История",
-      about_title:   "Королевское Наследие<br>Сладостей",
-      about_p1:      "Расположенный в самом сердце исторического Султанахмета, <strong>King Delight</strong> доносит вековые традиции османских кондитеров до самых любопытных путешественников мира.",
-      about_p2:      "От <strong>лукума с ароматом розы</strong> до обжаренных вручную фисташек — каждое изделие создаётся по аутентичным рецептам, передающимся из поколения в поколение.",
-      about_p3:      "Покупаете ли вы подарок или балуете себя — наш магазин сам по себе является незабываемым опытом: ароматным, красочным и сердечно приветливым.",
-      stat_varieties:"Видов",
-      stat_authentic:"Аутентично",
-      stat_flavour:  "Вкус",
-      stat_rated:    "Оценка",
-      products_label:"Что Мы Предлагаем",
-      products_title:"Наши Деликатесы",
-      tag_signature: "Фирменное",
-      tag_new:       "Новинка",
-      tag_popular:   "Популярное",
-      prod_lokum_name:   "Турецкий Лукум",
-      prod_lokum_desc:   "Роза, фисташки, гранат и десятки других вкусов. Оригинальный османский деликатес.",
-      prod_perfume_name: "Османские Духи",
-      prod_perfume_desc: "Редкий уд, розовая вода и янтарь — вечные восточные ароматы из Стамбула.",
-      prod_savon_name:   "Ремесленное Мыло",
-      prod_savon_desc:   "Турецкое ручное мыло с оливковым маслом, розой и лавром — чистое, натуральное, роскошное.",
-      prod_baklava_name: "Пахлава",
-      prod_baklava_desc: "Слои золотистого теста, мёда и орехов. Хрустящее, слоёное совершенство.",
-      prod_spices_name:  "Экзотические Специи",
-      prod_spices_desc:  "Шафран, сумах, за'атар и фирменные смеси специй из Большого Базара.",
-      prod_tea_name:     "Турецкий Чай",
-      prod_tea_desc:     "Премиальный чай-чай и травяные настои, чтобы взять домой.",
-      prod_coffee_name:  "Кофе",
-      prod_coffee_desc:  "Насыщенный турецкий кофе по традиционным османским рецептам — крепкий, ароматный, незабываемый.",
-      why_label:   "Почему Мы",
-      why_title:   "Королевское Обещание",
-      why1_title:  "Аутентичные Рецепты",
-      why1_desc:   "Каждая сладость создаётся по проверенным веками османским рецептам без компромиссов.",
-      why2_title:  "Идеальное Расположение",
-      why2_desc:   "В нескольких шагах от знаменитой Голубой Мечети в историческом Султанахмете.",
-      why3_title:  "Личный Сервис",
-      why3_desc:   "Мы всегда готовы помочь вам выбрать идеальные вкусы и подарки.",
-      test_label:    "Говорят Гости",
-      test_title:    "Слова Восхищения",
-      test1_text:    "Самый невероятный лукум, который я когда-либо пробовала. Сочетание розы и фисташек было просто божественным — я купила три коробки для семьи.",
-      test1_author:  "— Сара М., Лондон",
-      test2_text:    "Настоящий скрытый бриллиант у Голубой Мечети. Хозяин был очень тёплым и дал попробовать всё. Мы возвращались три дня подряд!",
-      test2_author:  "— Карлос Р., Мадрид",
-      test3_text:    "Связалась с ними в WhatsApp до приезда — они подготовили красивую коробку на заказ. Качество и упаковка превосходны. Очень рекомендую!",
-      test3_author:  "— Айша К., Дубай",
-      photos_label:  "Наши Гости",
-      photos_title:  "Счастливые Посетители",
-      photos_intro:  "Каждый день путешественники со всего мира переступают наш порог. Вот их моменты восхищения.",
-      photos_cta:    "Были у нас? Отметьте нас в Instagram @king.delight1 — ваше фото может появиться здесь! 📸",
-      photos_btn:    "Поделиться Моментом",
-      visit_label:     "Приходите к Нам",
-      visit_title:     "Посетите Магазин",
-      visit_loc_title: "Адрес",
-      visit_loc_value: "Рядом с Голубой Мечетью<br>(Вход B), Султанахмет<br>Стамбул, Турция",
-      visit_ig_title:  "Instagram",
-      visit_ig_follow: "Подписывайтесь на ежедневные вкусности",
-      visit_map_title: "Найти нас на Картах",
-      visit_map_link:  "Открыть в Google Maps →",
-      visit_whatsapp:  "Написать нам в WhatsApp",
-      footer_copy: "© 2026 King Delight Istanbul. Все права защищены.",
+      hero_badge:"Стамбул · Основан в Султанахмете",hero_sub:"Лучшие Турецкие Сладости",hero_location:"Рядом с Голубой Мечетью (Вход B), Стамбул",hero_desc:"Ручной лукум, экзотические специи и аутентичные сладости — в шаге от Голубой Мечети.",cta_explore:"Открыть",cta_find:"Найти нас",scroll_hint:"Узнать",about_label:"Наша История",about_title:"Королевское Наследие<br>Сладостей",about_p1:"Расположенный в самом сердце исторического Султанахмета, <strong>King Delight</strong> доносит вековые традиции османских кондитеров до самых любопытных путешественников мира.",about_p2:"От <strong>лукума с ароматом розы</strong> до обжаренных вручную фисташек — каждое изделие создаётся по аутентичным рецептам, передающимся из поколения в поколение.",about_p3:"Покупаете ли вы подарок или балуете себя — наш магазин сам по себе является незабываемым опытом: ароматным, красочным и сердечно приветливым.",stat_varieties:"Видов",stat_authentic:"Аутентично",stat_flavour:"Вкус",stat_rated:"Оценка",products_label:"Что Мы Предлагаем",products_title:"Наши Деликатесы",tag_signature:"Фирменное",tag_new:"Новинка",tag_popular:"Популярное",prod_lokum_name:"Турецкий Лукум",prod_lokum_desc:"Роза, фисташки, гранат и десятки других вкусов. Оригинальный османский деликатес.",prod_perfume_name:"Османские Духи",prod_perfume_desc:"Редкий уд, розовая вода и янтарь — вечные восточные ароматы из Стамбула.",prod_savon_name:"Ремесленное Мыло",prod_savon_desc:"Турецкое ручное мыло с оливковым маслом, розой и лавром — чистое, натуральное, роскошное.",prod_baklava_name:"Пахлава",prod_baklava_desc:"Слои золотистого теста, мёда и орехов. Хрустящее, слоёное совершенство.",prod_spices_name:"Экзотические Специи",prod_spices_desc:"Шафран, сумах, за'атар и фирменные смеси специй из Большого Базара.",prod_tea_name:"Турецкий Чай",prod_tea_desc:"Премиальный чай-чай и травяные настои, чтобы взять домой.",why_label:"Почему Мы",why_title:"Королевское Обещание",why1_title:"Аутентичные Рецепты",why1_desc:"Каждая сладость создаётся по проверенным веками османским рецептам без компромиссов.",why2_title:"Идеальное Расположение",why2_desc:"В нескольких шагах от знаменитой Голубой Мечети в историческом Султанахмете.",why3_title:"Личный Сервис",why3_desc:"Мы всегда готовы помочь вам выбрать идеальные вкусы и подарки.",test_label:"Говорят Гости",test_title:"Слова Восхищения",test1_text:"Самый невероятный лукум, который я когда-либо пробовала. Сочетание розы и фисташек было просто божественным — я купила три коробки для семьи.",test1_author:"— Сара М., Лондон",test2_text:"Настоящий скрытый бриллиант у Голубой Мечети. Хозяин был очень тёплым и дал попробовать всё. Мы возвращались три дня подряд!",test2_author:"— Карлос Р., Мадрид",test3_text:"Связалась с ними в WhatsApp до приезда — они подготовили красивую коробку на заказ. Качество и упаковка превосходны. Очень рекомендую!",test3_author:"— Айша К., Дубай",photos_label:"Наши Гости",photos_title:"Счастливые Посетители",photos_intro:"Каждый день путешественники со всего мира переступают наш порог. Вот их моменты восхищения.",photos_cta:"Были у нас? Отметьте нас в Instagram @king.delight1 — ваше фото может появиться здесь! 📸",photos_btn:"Поделиться Моментом",visit_label:"Приходите к Нам",visit_title:"Посетите Магазин",visit_loc_title:"Адрес",visit_loc_value:"Рядом с Голубой Мечетью<br>(Вход B), Султанахмет<br>Стамбул, Турция",visit_ig_title:"Instagram",visit_ig_follow:"Подписывайтесь на ежедневные вкусности",visit_map_title:"Найти нас на Картах",visit_map_link:"Открыть в Google Maps →",visit_whatsapp:"Написать нам в WhatsApp",footer_copy:"© 2026 King Delight Istanbul. Все права защищены."
     }
   };
 
   function setLang(lang) {
-    
     const t = translations[lang];
     if (!t) return;
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      if (t[key] !== undefined) {
-        // Use innerHTML for entries that contain HTML tags
-        el.innerHTML = t[key];
-      }
+      if (t[key] !== undefined) el.innerHTML = t[key];
     });
     document.querySelectorAll('.lang-btn').forEach(btn => {
       btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
@@ -1588,35 +735,166 @@
   // Scroll reveal
   const reveals = document.querySelectorAll('.reveal');
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
   }, { threshold: 0.12 });
   reveals.forEach(r => observer.observe(r));
 
-  // Image fallback: if Unsplash blocked, use a warm gradient placeholder
-  const fallbacks = [
-    'linear-gradient(135deg,#5C2A0A,#C9922A)',
-    'linear-gradient(135deg,#3D1C10,#8B4513)',
-    'linear-gradient(135deg,#6B2D0F,#D4A44C)',
-    'linear-gradient(135deg,#4A1A08,#A0622A)',
-    'linear-gradient(135deg,#2B1006,#9B4A1A)',
-    'linear-gradient(135deg,#3D1505,#B87333)',
-  ];
+  // Image fallback
+  const fallbacks = ['linear-gradient(135deg,#5C2A0A,#C9922A)','linear-gradient(135deg,#3D1C10,#8B4513)','linear-gradient(135deg,#6B2D0F,#D4A44C)','linear-gradient(135deg,#4A1A08,#A0622A)','linear-gradient(135deg,#2B1006,#9B4A1A)','linear-gradient(135deg,#3D1505,#B87333)'];
   let fi = 0;
   document.querySelectorAll('img[crossorigin]').forEach(img => {
     const grad = fallbacks[fi++ % fallbacks.length];
     img.onerror = function() {
       const parent = this.closest('.product-card-bg, .gallery-item, .why-card, .contact-card, .visitor-photo');
-      if (parent) {
-        this.style.display = 'none';
-        parent.style.background = grad;
-      }
+      if (parent) { this.style.display = 'none'; parent.style.background = grad; }
     };
   });
 </script>
+
+<script>
+// ══════════════════════════════════════
+//  LIGHTBOX — multi-image per card support
+// ══════════════════════════════════════
+(function(){
+  const galleries = [];
+
+  function buildGalleries() {
+    const productCards = document.querySelectorAll('.product-card');
+    const singleImgs = [];
+
+    productCards.forEach((card) => {
+      const extraContainer = card.querySelector('.savon-extra-imgs');
+      if (extraContainer) {
+        // Multi-image card: gets its own gallery
+        const imgs = extraContainer.querySelectorAll('img');
+        const cardImgs = [];
+        const name = card.querySelector('.product-card-name');
+        const desc = card.querySelector('.product-card-desc');
+        const captionBase = (name ? name.textContent.trim() : '') + (desc ? ' — ' + desc.textContent.trim() : '');
+        imgs.forEach(img => {
+          cardImgs.push({ src: img.src, alt: img.alt || '', caption: captionBase });
+        });
+        if (cardImgs.length) {
+          const gIdx = galleries.length;
+          galleries.push(cardImgs);
+          card.addEventListener('click', () => openLightbox(gIdx, 0));
+        }
+      } else {
+        // Single-image card: collect for shared gallery
+        const img = card.querySelector('.product-card-bg img');
+        if (!img) return;
+        const name = card.querySelector('.product-card-name');
+        const desc = card.querySelector('.product-card-desc');
+        singleImgs.push({ card, src: img.src, alt: img.alt || '', caption: (name ? name.textContent.trim() : '') + (desc ? ' — ' + desc.textContent.trim() : '') });
+      }
+    });
+
+    // Register single-image cards as one shared gallery
+    if (singleImgs.length) {
+      const gIdx = galleries.length;
+      galleries.push(singleImgs.map(s => ({ src: s.src, alt: s.alt, caption: s.caption })));
+      singleImgs.forEach((item, i) => {
+        item.card.addEventListener('click', () => openLightbox(gIdx, i));
+      });
+    }
+
+    // Visitor photos — one gallery
+    const visitorImgs = [];
+    document.querySelectorAll('.visitor-photo').forEach(photo => {
+      const img = photo.querySelector('img');
+      const cap = photo.querySelector('.visitor-caption');
+      if (!img) return;
+      visitorImgs.push({ src: img.src, alt: img.alt || '', caption: cap ? cap.textContent.trim() : '' });
+    });
+    if (visitorImgs.length) {
+      const gIdx = galleries.length;
+      galleries.push(visitorImgs);
+      document.querySelectorAll('.visitor-photo').forEach((photo, i) => {
+        photo.addEventListener('click', () => openLightbox(gIdx, i));
+      });
+    }
+  }
+
+  let curGallery = 0, curIdx = 0;
+  const overlay  = document.getElementById('lb-overlay');
+  const imgEl    = document.getElementById('lb-img');
+  const prevBtn  = document.getElementById('lb-prev');
+  const nextBtn  = document.getElementById('lb-next');
+  const closeBtn = document.getElementById('lb-close');
+  const counter  = document.getElementById('lb-counter');
+  const caption  = document.getElementById('lb-caption');
+  const thumbs   = document.getElementById('lb-thumbs');
+
+  function openLightbox(gIdx, idx) {
+    curGallery = gIdx; curIdx = idx;
+    renderThumbs(); showImage(idx, false);
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function showImage(idx, animate) {
+    const gallery = galleries[curGallery];
+    if (!gallery || !gallery[idx]) return;
+    curIdx = idx;
+    if (animate) {
+      imgEl.classList.add('fading');
+      setTimeout(() => { imgEl.src = gallery[idx].src; imgEl.alt = gallery[idx].alt; imgEl.classList.remove('fading'); }, 220);
+    } else { imgEl.src = gallery[idx].src; imgEl.alt = gallery[idx].alt; }
+    caption.textContent = gallery[idx].caption || '';
+    counter.textContent = (idx + 1) + ' / ' + gallery.length;
+    document.querySelectorAll('.lb-thumb').forEach((t, i) => {
+      t.classList.toggle('active', i === idx);
+      if (i === idx) t.scrollIntoView({ block: 'nearest', inline: 'nearest' });
+    });
+    prevBtn.style.visibility = gallery.length > 1 ? 'visible' : 'hidden';
+    nextBtn.style.visibility = gallery.length > 1 ? 'visible' : 'hidden';
+  }
+
+  function renderThumbs() {
+    const gallery = galleries[curGallery];
+    thumbs.innerHTML = '';
+    if (gallery.length <= 1) { thumbs.style.display = 'none'; return; }
+    thumbs.style.display = 'flex';
+    gallery.forEach((item, i) => {
+      const t = document.createElement('img');
+      t.className = 'lb-thumb'; t.src = item.src; t.alt = item.alt;
+      t.addEventListener('click', () => showImage(i, true));
+      thumbs.appendChild(t);
+    });
+  }
+
+  function navigate(dir) {
+    const gallery = galleries[curGallery];
+    showImage((curIdx + dir + gallery.length) % gallery.length, true);
+  }
+
+  closeBtn.addEventListener('click', closeLightbox);
+  prevBtn.addEventListener('click', () => navigate(-1));
+  nextBtn.addEventListener('click', () => navigate(1));
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeLightbox(); });
+  document.addEventListener('keydown', e => {
+    if (!overlay.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') navigate(-1);
+    if (e.key === 'ArrowRight') navigate(1);
+    if (e.key === 'Escape') closeLightbox();
+  });
+  let touchStartX = 0;
+  overlay.addEventListener('touchstart', e => { touchStartX = e.touches[0].clientX; }, { passive: true });
+  overlay.addEventListener('touchend', e => {
+    const dx = e.changedTouches[0].clientX - touchStartX;
+    if (Math.abs(dx) > 50) navigate(dx < 0 ? 1 : -1);
+  }, { passive: true });
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildGalleries);
+  } else { buildGalleries(); }
+})();
+</script>
+
 </body>
 </html>
